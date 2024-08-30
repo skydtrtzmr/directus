@@ -8,6 +8,9 @@ import Draggable from 'vuedraggable';
 import TableHeader from './table-header.vue';
 import TableRow from './table-row.vue';
 import { Header, HeaderRaw, Item, ItemSelectEvent, Sort } from './types';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const HeaderDefaults: Header = {
 	text: '',
@@ -55,6 +58,10 @@ const props = withDefaults(
 		loading: false,
 		loadingText: i18n.global.t('loading'),
 		noItemsText: i18n.global.t('no_items'),
+		// DONE
+		// 不能直接在这里写：
+		// noItemsText: t('no_items'),
+		// 这个东西必须写在<template>里。
 		rowHeight: 48,
 		selectionUseKeys: false,
 		inline: false,
@@ -294,7 +301,8 @@ function updateSort(newSort: Sort) {
 			</tbody>
 			<tbody v-if="!loading && items.length === 0">
 				<tr class="no-items-text">
-					<td :style="{ gridColumn: fullColSpan }">{{ noItemsText }}</td>
+					<!-- <td :style="{ gridColumn: fullColSpan }">{{ noItemsText }}</td> -->
+					 <td :style="{ gridColumn: fullColSpan }">{{ t('no_items') }}</td>
 				</tr>
 			</tbody>
 			<draggable

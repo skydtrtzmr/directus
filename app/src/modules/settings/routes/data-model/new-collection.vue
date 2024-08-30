@@ -274,7 +274,9 @@ function getSystemFields() {
 				special: ['user-created'],
 				interface: 'select-dropdown-m2o',
 				options: {
-					template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}',
+					// template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}',
+					// DONE
+					template: '{{avatar.$thumbnail}} {{last_name}} {{first_name}}',
 				},
 				display: 'user',
 				readonly: true,
@@ -312,7 +314,9 @@ function getSystemFields() {
 				special: ['user-updated'],
 				interface: 'select-dropdown-m2o',
 				options: {
-					template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}',
+					// template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}',
+					// DONE
+					template: '{{avatar.$thumbnail}} {{last_name}} {{first_name}}',
 				},
 				display: 'user',
 				readonly: true,

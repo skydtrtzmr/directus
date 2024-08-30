@@ -156,7 +156,7 @@ function handleObject(fieldKey: string) {
 				/>
 
 				<template #fallback>
-					<span>{{ part.value }}</span>
+					<span>{{ part.value }}测试</span>
 				</template>
 			</v-error-boundary>
 			<span v-else-if="typeof part === 'string'" :dir="direction">{{ translate(part) }}</span>

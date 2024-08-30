@@ -428,7 +428,7 @@ function edit(type: Alteration, options?: Record<string, any>) {
 	--v-button-background-color-hover: var(--theme--form--field--input--border-color);
 	--v-button-color-hover: var(--theme--form--field--input--foreground);
 
-	min-height: 300px;
+	min-height: 100px; // DONE min-height: 300px;
 	overflow: hidden;
 	font-family: var(--theme--fonts--sans--font-family);
 	border: var(--theme--border-width) solid var(--theme--form--field--input--border-color);
@@ -514,7 +514,8 @@ textarea {
 }
 
 .interface-input-rich-text-md :deep(.CodeMirror .CodeMirror-scroll) {
-	min-height: 260px;
+	min-height: 100px; // DONE min-height: 260px; 在这里修改md编辑器初始高度。
+	// 高度设为100px的话，浏览器显示比例大于100%时，编辑器的高度够显示4行正文。
 }
 
 .interface-input-rich-text-md.preview :deep(.CodeMirror) {

@@ -71,7 +71,8 @@ fields:
   - field: users
     interface: list-m2m
     options:
-      template: '{{ user.first_name }} {{ user.last_name }}'
+      # template: '{{ user.first_name }} {{ user.last_name }}'
+      template: '{{ user.last_name }}{{ user.first_name }}' # DONE
       junctionFilter:
         user:
           _nnull: true

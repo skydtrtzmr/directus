@@ -78,18 +78,19 @@ const links = computed<Link[][]>(() => [
 			to: '/settings/extensions',
 		},
 	],
-	[
-		{
-			icon: 'bug_report',
-			name: t('report_bug'),
-			href: settings.value?.report_bug_url ?? DEFAULT_REPORT_BUG_URL,
-		},
-		{
-			icon: 'new_releases',
-			name: t('request_feature'),
-			href: settings.value?.report_feature_url ?? DEFAULT_REPORT_FEATURE_URL,
-		},
-	],
+	// DONE 删除这两个按钮
+	// [
+	// 	{
+	// 		icon: 'bug_report',
+	// 		name: t('report_bug'),
+	// 		href: settings.value?.report_bug_url ?? DEFAULT_REPORT_BUG_URL,
+	// 	},
+	// 	{
+	// 		icon: 'new_releases',
+	// 		name: t('request_feature'),
+	// 		href: settings.value?.report_feature_url ?? DEFAULT_REPORT_FEATURE_URL,
+	// 	},
+	// ],
 ]);
 </script>
 
@@ -109,12 +110,13 @@ const links = computed<Link[][]>(() => [
 			<v-divider v-if="index !== links.length - 1" :key="index" />
 		</template>
 
-		<v-list-item href="https://github.com/directus/directus/releases" class="version">
+		<!-- DONE 删除github版本信息 -->
+		<!-- <v-list-item href="https://github.com/directus/directus/releases" class="version">
 			<v-list-item-icon><v-icon name="directus" /></v-list-item-icon>
 			<v-list-item-content>
 				<v-text-overflow class="version" :text="`Directus ${info.version}`" />
 			</v-list-item-content>
-		</v-list-item>
+		</v-list-item> -->
 	</v-list>
 </template>
 

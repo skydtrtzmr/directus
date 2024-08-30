@@ -73,7 +73,7 @@ fields:
     width: half
     display: user
     options:
-      template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      template: '{{avatar.$thumbnail}} {{last_name}} {{first_name}}'
     readonly: true
     conditions:
       - name: notCreatedYet

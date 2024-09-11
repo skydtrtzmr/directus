@@ -519,6 +519,11 @@ hours: 时
 month: 月
 year: 年
 select_all: 全选
+permissionsLevel:
+  all: 所有 {action} 权限
+  partial: 部分 {action} 权限
+  custom: 自定义 {action} 权限
+  none: 无 {action} 权限
 months:
   january: 1 月
   february: 2 月
@@ -747,7 +752,7 @@ errors:
   VALUE_OUT_OF_RANGE: 数值超出范围
   VALUE_TOO_LONG: 数值太长
 security: 安全
-value_hashed: 哈希值
+value_hashed: 值已哈希化
 bookmark_name: 书签名称
 create_bookmark: 创建书签
 edit_bookmark: 编辑书签

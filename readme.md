@@ -70,3 +70,18 @@ https://testfellow.com/what-are-mcqs/#google_vignette
 
 现在这个版本源码有bug……我可能应该重新fork一份代码，然后再进行修改。
 现在的bug在于，markdown编辑器无法正常渲染了。
+
+## directus Admin静态密钥：
+Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
+
+#### 注意
+
+当可见的collection数量超过20，会自动出现“搜索”功能，可以快速定位到想要的collection。
+
+搜索功能的实现在`app\src\modules\content\components\navigation.vue`中，可以看到：
+
+```
+		<div v-if="showSearch" class="search-input">
+			<v-input v-model="search" type="search" :placeholder="t('search_collection')" />
+		</div>
+```

@@ -117,12 +117,13 @@ const links = computed<Link[][]>(() => [
 			<v-divider v-if="index !== links.length - 1" :key="index" />
 		</template>
 
-		<v-list-item href="https://github.com/directus/directus/releases" class="version">
+		<!-- DONE 不显示版本信息 -->
+		<!-- <v-list-item href="https://github.com/directus/directus/releases" class="version">
 			<v-list-item-icon><v-icon name="directus" /></v-list-item-icon>
 			<v-list-item-content>
 				<v-text-overflow class="version" :text="`Directus ${info.version}`" />
 			</v-list-item-content>
-		</v-list-item>
+		</v-list-item> -->
 	</v-list>
 </template>
 

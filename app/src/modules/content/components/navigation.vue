@@ -31,7 +31,9 @@ const rootItems = computed(() => {
 });
 
 const dense = computed(() => collectionsStore.visibleCollections.length > 5);
-const showSearch = computed(() => collectionsStore.visibleCollections.length > 20);
+// const showSearch = computed(() => collectionsStore.visibleCollections.length > 20);
+// DONE 修改显示搜索框条件
+const showSearch = computed(() => collectionsStore.visibleCollections.length > 30);
 
 const hasHiddenCollections = computed(
 	() => collectionsStore.allCollections.length > collectionsStore.visibleCollections.length,

@@ -19,16 +19,16 @@
 #'Int32Array', 'Uint32Array', 'Float32Array', 'Float64Array', 'Map', 'Set', 'WeakMap', 'WeakSet',
 #'SIMD', 'ArrayBuffer', 'DataView', 'JSON', 'Promise', 'Generator', 'GeneratorFunction', 'Reflect',
 #'Proxy', 'Intl'
+
 about: 关于
-# identifier: 标识符（identifier）
-identifier: 标识符 # DONE
+identifier: 标识符 # DONE  identifier: 标识符（identifier）
 avatar: 头像
 application: 应用程序
 default_provider: 默认
 method: 方法
 published: 已发布
 draft: 草稿
-archived: 已存档
+archived: 已归档 # DONE archive 存档都改成归档
 marketplace: 扩展集市
 extensions: 扩展
 modules: 模块
@@ -37,7 +37,7 @@ logs: 日志
 unknown: 未知
 reset_width: 重置宽度
 tile_size: 瓦块大小
-edit_field: 编辑
+edit_field: 编辑字段
 conditions: 条件
 location: 地理位置
 collection_names_are_case_sensitive: 集合名称区分大小写 # DONE
@@ -86,7 +86,9 @@ extension_reload_required_copy: 启用或禁用应用扩展后需要重新加载
 extension_reload_now: 立即重新加载
 published_relative: 已发布 {relativeTime}
 compatible_with_your_project: 与您的项目兼容
-compatible_with_your_project_copy: 作者已将此扩展的兼容性版本定为 {hostVersion}，它与您的项目版本 ({currentVersion}) 不匹配
+compatible_with_your_project_copy: # DONE 原先说的是“不匹配”，现在改成“与您的项目兼容”
+  作者已将此扩展的兼容性版本定为 {hostVersion}，
+  它与您的项目版本 ({currentVersion}) 兼容
 last_updated_relative: 最近更新 {relativeTime}
 n_files: '{n} 个文件'
 verified: 已验证
@@ -101,7 +103,9 @@ beta: 测试版
 n_downloads: '{n} 次下载'
 downloads: 下载数
 compatibility_not_guaranteed: 兼容性没有保障
-compatibility_not_guaranteed_copy: 作者已将此扩展的兼容性版本定为 {hostVersion}，它与您的项目版本 ({currentVersion}) 不匹配
+compatibility_not_guaranteed_copy:
+  作者已将此扩展的兼容性版本定为 {hostVersion}，
+  它与您的项目版本 ({currentVersion}) 不匹配
 enable: 启用
 disable: 禁用
 custom: 自定义
@@ -111,6 +115,7 @@ field_name_translations: 字段名称翻译
 enter_password_to_enable_tfa: 输入您的密码以启用双因素认证(2FA)
 add_field: 添加字段
 role_name: 角色名称
+policy_name: 策略名称
 branch: 分支
 leaf: 叶节点
 indeterminate: 不确定的状态
@@ -119,7 +124,7 @@ exclusive: 排他，分支或叶节点间互斥
 children: 子页面
 db_only_click_to_configure: '仅限数据库：点击配置'
 show_active_items: 显示活动项
-show_archived_items: 显示存档条目
+show_archived_items: 显示归档条目
 show_all_items: 显示所有条目
 edited: 已编辑的值
 required: 必填
@@ -143,10 +148,10 @@ email_already_invited: 电子邮件 "{email}" 已被邀请
 subject: 主題
 inbox: 收件箱
 emails: 邮箱
-connection_excellent: 优秀的连接状态
-connection_good: 好的连接状态
-connection_fair: 一般的连接状态
-connection_poor: 连接不良
+connection_excellent: 连接优秀 # DONE connection_excellent: 优秀的连接状态
+connection_good: 连接良好 # DONE connection_good: 好的连接状态
+connection_fair: 连接一般 # DONE connection_fair: 一般的连接状态
+connection_poor: 连接不良 # DONE connection_poor: 连接不良
 primary: 主要的
 rename_folder: 重命名文件夹
 delete_folder: 删除文件夹
@@ -198,16 +203,16 @@ admin_description: 不受限制的 App/ API 访问权限的初始管理角色
 no_description: 没有描述。
 reached_maximum_number_of_extensions: 您已达到此项目的最大扩展数 ({n})。请联系您的系统管理员以获取更多信息。
 not_allowed: 不允许
-archive: 存档
+archive: 归档
 archive_confirm: 您确定要归档所选吗？
 archive_confirm_count: >-
-  没有选定条目 | 你确定要存档这个条目吗？| 你确定你想要存档这些 {count} 个条目吗？
+  没有选定条目 | 你确定要归档这个条目吗？| 你确定你想要归档这些 {count} 个条目吗？
 reset_system_permissions_to: '重置系统权限：'
 reset_system_permissions_copy: 此操作将覆盖您可能应用到系统模型中的自定义权限。确定吗？
 the_following_are_minimum_permissions: 当启用“应用访问”时，以下最低权限将自动应用。 您可以在需要时授予额外的权限，但是您不能将权限降低到这个级别以下。
 app_access_minimum: 最小权限
 recommended_defaults: 推荐设置
-unarchive: 取消存档
+unarchive: 取消归档
 unarchive_confirm: 您确定要取消归档此条目吗？
 nested_files_folders_will_be_moved: 文件和文件夹将被上移一级。
 validation_errors_notice: '以下字段含有无效值:'
@@ -295,11 +300,11 @@ create_in_advanced_field_creation_mode: 在高级模式下创建字段
 continue_in_advanced_field_creation_mode: 在高级字段创建模式中继续
 validation: 验证
 sum: 求和
-sum_distinct: Sum Distinct
-avg: 平均值
-avg_distinct: Average Distinct
-count: Count
-count_distinct: Count Distinct
+sum_distinct: 求和（唯一值）
+avg: 求平均
+avg_distinct: 求平均（唯一值）
+count: 计数
+count_distinct: 计数（唯一值）
 min: 最小值
 max: 最大值
 exposure: 过期
@@ -317,8 +322,8 @@ disabled_editing_value: 禁用编辑
 key: 关键字
 alias: 别名
 bigInteger: Big Integer
-boolean: Boolean
-date: Date
+boolean: 布尔值
+date: 日期
 date_range: 时间段
 translation_key_placeholder: 请输入键...
 datetime: DateTime
@@ -434,7 +439,7 @@ clear_items: 清除条目
 reset_to_default: 重置为默认值
 undo_changes: 撤销更改
 notifications: 通知
-archive_all: 全部存档
+archive_all: 全部归档
 show_all_activity: 显示所有活动
 page_not_found: 找不到页面
 page_not_found_body: 您正在寻找的页面似乎不存在。
@@ -626,6 +631,7 @@ display_not_found: '未找到显示 "{display}" 。'
 reset_display: 重置显示
 list-m2a: 构建器 (M2A)
 item_count: '暂无数据 | 找到一条数据 | 找到 {count} 条数据'
+filtered_item_count: '暂无筛选数据 | 找到一条筛选数据 | 找到 {count} 条筛选数据'
 no_items_copy: 该模型中没有数据。
 file_count: '没有文件 | 一个文件 | {count} 个文件'
 no_files_copy: 没有任何文件。
@@ -966,7 +972,7 @@ operation_key: 用于引用的标识...
 operation_key_unique_error: 操作的键值(keys)在同一流程中必须是唯一的
 operation_handle_resolve: '成功：点击添加或拖动布局'
 operation_handle_reject: '失败：点击添加或拖动布局'
-insights: 洞察分析
+insights: 统计分析
 dashboard: 控制面板
 panel: 面板
 panel_options: 选项
@@ -1294,7 +1300,7 @@ fields:
     status_unverified: 未验证
     status_active: 激活
     status_suspended: 已停用
-    status_archived: 已存档
+    status_archived: 已归档
     role: 角色
     token: Token
     provider: 提供方
@@ -1465,7 +1471,7 @@ field_options:
     collection_name: 模型名称
     singular_unit: 单一单位
     plural_unit: 复数单位
-    archive_divider: 存档
+    archive_divider: 归档
     archive_field_placeholder: 选择字段...
     archive_app_filter: 启用归档功能
     archive_value: 归档时设定的值...
@@ -1514,7 +1520,7 @@ field_options:
     status_dropdown_invited: 已邀请
     status_dropdown_active: 激活
     status_dropdown_suspended: 已停用
-    status_dropdown_archived: 已存档
+    status_dropdown_archived: 已归档
     token: 请输入安全访问令牌...
   directus_webhooks:
     status_options_active: 激活
@@ -2050,14 +2056,14 @@ displays:
   boolean:
     boolean: Boolean
     description: 显示开启或关闭状态
-    label_on: 标签开启
+    label_on: 开启时标签
     label_on_placeholder: 在标签上输入...
-    label_off: 关闭标签
+    label_off: 关闭时标签
     label_off_placeholder: 输入关闭标签...
-    icon_on: 图标开启
-    icon_off: 关闭图标
-    color_on: 启用颜色
-    color_off: 禁用颜色
+    icon_on: 开启时图标
+    icon_off: 关闭时图标
+    color_on: 启用时颜色
+    color_off: 禁用时颜色
   collection:
     collection: 数据模型
     description: 显示模型

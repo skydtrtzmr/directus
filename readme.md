@@ -10,6 +10,12 @@
 pnpm install
 ```
 
+### 初始化数据库
+先创建好要用的数据库，然后执行初始化：
+```
+pnpm --filter api cli bootstrap
+```
+
 ### 构建
 
 ```bash
@@ -81,7 +87,7 @@ Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
 搜索功能的实现在`app\src\modules\content\components\navigation.vue`中，可以看到：
 
 ```
-		<div v-if="showSearch" class="search-input">
-			<v-input v-model="search" type="search" :placeholder="t('search_collection')" />
-		</div>
+<div v-if="showSearch" class="search-input">
+    <v-input v-model="search" type="search" :placeholder="t('search_collection')" />
+</div>
 ```

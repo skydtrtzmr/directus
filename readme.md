@@ -10,6 +10,14 @@
 pnpm install
 ```
 
+### 初始化数据库
+
+先创建好要用的数据库，然后执行初始化：
+
+```bash
+pnpm --filter api cli bootstrap
+```
+
 ### 构建
 
 ```bash
@@ -29,6 +37,8 @@ pnpm --filter api dev
 ```bash
 pnpm --filter app dev
 ```
+
+注意：如果需要前端部分（app）热更新的话，不要从`pnpm --filter api dev`（或者api目录下`pnpm dev`）启动，而是从`pnpm --filter app dev`（或者app目录下`pnpm dev`）启动。
 
 #### 关于系统collections的显示
 
@@ -66,10 +76,6 @@ flow中，用脚本来把对象添加到列表的属性中，从而解决数据�
 关于题型，参考这篇文章：
 https://testfellow.com/what-are-mcqs/#google_vignette
 
-## Bug
-
-现在这个版本源码有bug……我可能应该重新fork一份代码，然后再进行修改。
-现在的bug在于，markdown编辑器无法正常渲染了。
 
 ## directus Admin静态密钥：
 Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
@@ -81,7 +87,7 @@ Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
 搜索功能的实现在`app\src\modules\content\components\navigation.vue`中，可以看到：
 
 ```
-		<div v-if="showSearch" class="search-input">
-			<v-input v-model="search" type="search" :placeholder="t('search_collection')" />
-		</div>
+<div v-if="showSearch" class="search-input">
+    <v-input v-model="search" type="search" :placeholder="t('search_collection')" />
+</div>
 ```

@@ -146,3 +146,9 @@ declare module 'vue-virtual-scroller' {
 
 	export function IdState(options?: { idProp?: (value: any) => unknown }): ComponentOptionsMixin;
 }
+
+// DONE 尝试添加 marked-katex-extension	的声明文件
+declare module 'marked-katex-extension' {
+    const markedKatex: any; // 或者根据需要定义更具体的类型
+    export default markedKatex;
+}

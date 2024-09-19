@@ -11,8 +11,10 @@ pnpm install
 ```
 
 ### 初始化数据库
+
 先创建好要用的数据库，然后执行初始化：
-```
+
+```bash
 pnpm --filter api cli bootstrap
 ```
 
@@ -72,10 +74,6 @@ flow中，用脚本来把对象添加到列表的属性中，从而解决数据�
 关于题型，参考这篇文章：
 https://testfellow.com/what-are-mcqs/#google_vignette
 
-## Bug
-
-现在这个版本源码有bug……我可能应该重新fork一份代码，然后再进行修改。
-现在的bug在于，markdown编辑器无法正常渲染了。
 
 ## directus Admin静态密钥：
 Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa

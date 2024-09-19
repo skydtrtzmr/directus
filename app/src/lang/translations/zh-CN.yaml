@@ -326,8 +326,8 @@ boolean: 布尔值
 date: 日期
 date_range: 时间段
 translation_key_placeholder: 请输入键...
-datetime: DateTime
-dateTime: DateTime
+datetime: 日期时间
+dateTime: 日期时间
 precision: 精度
 decimal: Decimal
 float: Float
@@ -2390,7 +2390,7 @@ operations:
     token: Token
     token_placeholder: eyJhbGciOi
     options: 选项
-    options_placeholder: '请参考阅读https://www.npmjs.com/package/jsonwebtoken#usage for the available options'
+    options_placeholder: '请参考阅读 https://www.npmjs.com/package/jsonwebtoken#usage 以查看可用选项。'
     sign: 签名令牌
     verify: 验证令牌
     decode: 删除令牌

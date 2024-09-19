@@ -10,11 +10,18 @@ type Options = {
 
 const renderer = new marked.Renderer();
 
+// DONE 新增空格替换，避免多个空格被渲染成一个空格
+renderer.text = function(text) {
+	return text.replace(/ /g, ' &nbsp;');
+  };
+
 // DONE 新增 katex 扩展
 const options = {
 	throwOnError: false,
-	output: 'mathml', // 这里要设置成mathml（注意不是MathML！一定要小写！参考官方文档https://katex.org/docs/options.html）
+	output: 'mathml',
+	// 这里要设置成mathml（注意不是MathML！一定要小写！参考官方文档https://katex.org/docs/options.html）
 	// 否则katex公式会重复渲染（一遍html，一遍mathml）。
+	nonStandard: true // 允许使用一些非标准的latex语法，比如`$`前后可以没有空格。
   };
 
 marked.use(markedKatex(options));

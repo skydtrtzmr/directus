@@ -1,3 +1,4 @@
+// 儒儒注：这个文件是默认的主题文件（浅色模式），可以根据需要修改，但不要删除
 import { defineTheme } from '../../utils/define-theme.js';
 
 export default defineTheme({
@@ -17,9 +18,14 @@ export default defineTheme({
 		backgroundAccent: '#e4eaf1',
 		backgroundSubdued: '#f7fafc',
 
-		borderColor: '#e4eaf1',
-		borderColorAccent: '#d3dae4',
-		borderColorSubdued: '#f0f4f9',
+		// borderColor: '#e4eaf1',
+		// borderColorAccent: '#d3dae4',
+		// borderColorSubdued: '#f0f4f9',
+
+		// DONE 修改默认颜色
+		borderColor: '#d3dae4',
+		borderColorAccent: '#778899',
+		borderColorSubdued: '#e4eaf1',
 
 		primary: 'var(--project-color)',
 		primaryBackground: 'color-mix(in srgb, var(--theme--background), var(--theme--primary) 10%)',

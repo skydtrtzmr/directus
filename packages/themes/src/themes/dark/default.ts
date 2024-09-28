@@ -1,3 +1,4 @@
+// 儒儒注：这个文件是默认的主题文件（深色模式），可以根据需要修改，但不要删除
 import { defineTheme } from '../../utils/define-theme.js';
 
 export default defineTheme({

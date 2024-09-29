@@ -14,8 +14,9 @@ coverage/
 .eslintcache
 
 # Dotenv configs
-.env
-.env.*
+# 我自己需要把.env文件也同步。
+# .env
+# .env.*
 
 # Logs
 npm-debug.log

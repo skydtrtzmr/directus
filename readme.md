@@ -6,13 +6,20 @@
 
 ### 安装依赖
 
+系统依赖：
+```bash
+npm i isolated-vm -g
+npm i sharp -g
+npm i argon2 -g
+```
+
 ```bash
 pnpm install
 ```
 
 ### 初始化数据库
 
-先创建好要用的数据库，然后执行初始化：
+如果第一次用，先创建好要用的数据库，然后执行初始化：
 
 ```bash
 pnpm --filter api cli bootstrap

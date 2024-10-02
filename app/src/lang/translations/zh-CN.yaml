@@ -1659,8 +1659,8 @@ registration_successful_headline: 成功！
 registration_successful_note: 您现在可以进入登录页面。
 registration_successful_check_email_note: |
   请注意，您需要通过点击发送给您的验证链接来验证您的电子邮件地址。
-dont_have_an_account: 还没有帐户吗？
-already_have_an_account: 已经有一个帐户了？
+dont_have_an_account: 还没有账户吗？
+already_have_an_account: 已经有一个账户了？
 sign_up_now: 立即注册
 sign_in: 登录
 sign_out: 退出登录

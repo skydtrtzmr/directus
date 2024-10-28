@@ -41,11 +41,6 @@ export type Stat = {
 	modified: Date;
 };
 
-export type ReadOptions = {
-	range?: Range | undefined;
-	version?: string | undefined;
-};
-
 export type ChunkedUploadContext = {
 	size?: number | undefined;
 	metadata: Record<string, string | null> | undefined;
@@ -54,7 +49,7 @@ export type ChunkedUploadContext = {
 export declare class Driver {
 	constructor(config: Record<string, unknown>);
 
-	read(filepath: string, options?: ReadOptions): Promise<Readable>;
+	read(filepath: string, range?: Range): Promise<Readable>;
 	write(filepath: string, content: Readable, type?: string): Promise<void>;
 	delete(filepath: string): Promise<void>;
 	stat(filepath: string): Promise<Stat>;

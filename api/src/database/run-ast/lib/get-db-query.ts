@@ -1,8 +1,7 @@
 import { useEnv } from '@directus/env';
-import type { Filter, Permission, Query } from '@directus/types';
+import type { Filter, Permission, Query, SchemaOverview } from '@directus/types';
 import type { Knex } from 'knex';
 import { cloneDeep } from 'lodash-es';
-import type { Context } from '../../../permissions/types.js';
 import type { FieldNode, FunctionFieldNode, O2MNode } from '../../../types/ast.js';
 import type { ColumnSortRecord } from '../../../utils/apply-query.js';
 import applyQuery, { applyLimit, applySort, generateAlias } from '../../../utils/apply-query.js';
@@ -16,23 +15,19 @@ import { getNodeAlias } from '../utils/get-field-alias.js';
 import { getInnerQueryColumnPreProcessor } from '../utils/get-inner-query-column-pre-processor.js';
 import { withPreprocessBindings } from '../utils/with-preprocess-bindings.js';
 
-export type DBQueryOptions = {
-	table: string;
-	fieldNodes: (FieldNode | FunctionFieldNode)[];
-	o2mNodes: O2MNode[];
-	query: Query;
-	cases: Filter[];
-	permissions: Permission[];
-	permissionsOnly?: boolean;
-};
-
 export function getDBQuery(
-	{ table, fieldNodes, o2mNodes, query, cases, permissions, permissionsOnly }: DBQueryOptions,
-	{ knex, schema }: Context,
+	schema: SchemaOverview,
+	knex: Knex,
+	table: string,
+	fieldNodes: (FieldNode | FunctionFieldNode)[],
+	o2mNodes: O2MNode[],
+	query: Query,
+	cases: Filter[],
+	permissions: Permission[],
 ): Knex.QueryBuilder {
 	const aliasMap: AliasMap = Object.create(null);
 	const env = useEnv();
-	const preProcess = getColumnPreprocessor(knex, schema, table, cases, permissions, aliasMap, permissionsOnly);
+	const preProcess = getColumnPreprocessor(knex, schema, table, cases, permissions, aliasMap);
 	const queryCopy = cloneDeep(query);
 	const helpers = getHelpers(knex);
 

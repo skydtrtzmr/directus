@@ -1,6 +1,5 @@
 export * from './accountability.js';
 export * from './collection.js';
-export * from './comments.js';
 export * from './events.js';
 export * from './fields.js';
 export * from './files.js';

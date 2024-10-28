@@ -211,15 +211,9 @@ router.get(
 
 		const { outdated, mainHash } = await service.verifyHash(version['collection'], version['item'], version['hash']);
 
-		let current;
+		const saves = await service.getVersionSavesById(version['id']);
 
-		if (version['delta']) {
-			current = version['delta'];
-		} else {
-			const saves = await service.getVersionSavesById(version['id']);
-
-			current = assign({}, ...saves);
-		}
+		const current = assign({}, ...saves);
 
 		const main = await service.getMainItem(version['collection'], version['item']);
 
@@ -242,9 +236,11 @@ router.post(
 
 		const mainItem = await service.getMainItem(version['collection'], version['item']);
 
-		const updatedVersion = await service.save(req.params['pk']!, req.body);
+		await service.save(req.params['pk']!, req.body);
 
-		const result = assign(mainItem, updatedVersion);
+		const saves = await service.getVersionSavesById(req.params['pk']!);
+
+		const result = assign(mainItem, ...saves);
 
 		res.locals['payload'] = { data: result || null };
 

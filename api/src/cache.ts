@@ -1,14 +1,15 @@
 import { useEnv } from '@directus/env';
 import type { SchemaOverview } from '@directus/types';
-import Keyv, { type KeyvOptions } from 'keyv';
+import type { Options } from 'keyv';
+import Keyv from 'keyv';
 import { useBus } from './bus/index.js';
 import { useLogger } from './logger/index.js';
-import { clearCache as clearPermissionCache } from './permissions/cache.js';
 import { redisConfigAvailable } from './redis/index.js';
 import { compress, decompress } from './utils/compress.js';
 import { getConfigFromEnv } from './utils/get-config-from-env.js';
 import { getMilliseconds } from './utils/get-milliseconds.js';
 import { validateEnv } from './utils/validate-env.js';
+import { clearCache as clearPermissionCache } from './permissions/cache.js';
 
 import { createRequire } from 'node:module';
 
@@ -157,14 +158,14 @@ function getKeyvInstance(store: Store, ttl: number | undefined, namespaceSuffix?
 	}
 }
 
-function getConfig(store: Store = 'memory', ttl: number | undefined, namespaceSuffix = ''): KeyvOptions {
-	const config: KeyvOptions = {
+function getConfig(store: Store = 'memory', ttl: number | undefined, namespaceSuffix = ''): Options<any> {
+	const config: Options<any> = {
 		namespace: `${env['CACHE_NAMESPACE']}${namespaceSuffix}`,
-		...(ttl && { ttl }),
+		ttl,
 	};
 
 	if (store === 'redis') {
-		const { default: KeyvRedis } = require('@keyv/redis');
+		const KeyvRedis = require('@keyv/redis');
 		config.store = new KeyvRedis(env['REDIS'] || getConfigFromEnv('REDIS'), { useRedisSets: false });
 	}
 

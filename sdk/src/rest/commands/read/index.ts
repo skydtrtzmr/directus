@@ -2,7 +2,6 @@ export * from './activity.js';
 export * from './aggregate.js';
 export * from './assets.js';
 export * from './collections.js';
-export * from './comments.js';
 export * from './dashboards.js';
 export * from './extensions.js';
 export * from './fields.js';

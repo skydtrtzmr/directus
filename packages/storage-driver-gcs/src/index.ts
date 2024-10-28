@@ -1,4 +1,4 @@
-import type { Driver, ReadOptions } from '@directus/storage';
+import type { Driver, Range } from '@directus/storage';
 import { normalizePath } from '@directus/utils';
 import type { Bucket, CreateReadStreamOptions, GetFilesOptions } from '@google-cloud/storage';
 import { Storage } from '@google-cloud/storage';
@@ -33,15 +33,13 @@ export class DriverGCS implements Driver {
 		return this.bucket.file(filepath);
 	}
 
-	async read(filepath: string, options?: ReadOptions) {
-		const { range } = options || {};
+	async read(filepath: string, range?: Range) {
+		const options: CreateReadStreamOptions = {};
 
-		const stream_options: CreateReadStreamOptions = {};
+		if (range?.start) options.start = range.start;
+		if (range?.end) options.end = range.end;
 
-		if (range?.start) stream_options.start = range.start;
-		if (range?.end) stream_options.end = range.end;
-
-		return this.file(this.fullPath(filepath)).createReadStream(stream_options);
+		return this.file(this.fullPath(filepath)).createReadStream(options);
 	}
 
 	async write(filepath: string, content: Readable) {

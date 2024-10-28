@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { isDynamicVariable } from '@directus/utils';
 import { computed, onMounted, onUpdated, ref, watch } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -14,7 +13,6 @@ const props = withDefaults(
 		is: string;
 		type: string;
 		value: string | number | Record<string, unknown> | boolean | null;
-		commaAllowed?: boolean;
 		focus?: boolean;
 		choices?: Choice[];
 	}>(),
@@ -79,17 +77,15 @@ watch(
 );
 
 function isValueValid(value: any): boolean {
-	if (
-		value === '' ||
-		typeof value !== 'string' ||
-		(props.commaAllowed && value.includes(',')) ||
-		!inputPattern.value ||
-		new RegExp(inputPattern.value).test(value)
-	) {
+	if (value === '' || typeof value !== 'string' || !inputPattern.value || new RegExp(inputPattern.value).test(value)) {
 		return true;
 	}
 
-	if (isDynamicVariable(value) || /^{{\s*?\S+?\s*?}}$/.test(value)) {
+	if (
+		typeof value === 'string' &&
+		(['$NOW', '$CURRENT_USER', '$CURRENT_ROLE'].some((prefix) => value.startsWith(prefix)) ||
+			/^{{\s*?\S+?\s*?}}$/.test(value))
+	) {
 		return true;
 	}
 

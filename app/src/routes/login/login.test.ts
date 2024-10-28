@@ -7,6 +7,7 @@ import { useServerStore } from '@/stores/server';
 import publicView from '@/views/public/public-view.vue';
 import { useAppStore } from '@directus/stores';
 import { createTestingPinia } from '@pinia/testing';
+import { createHead } from '@unhead/vue';
 import { mount } from '@vue/test-utils';
 import { setActivePinia } from 'pinia';
 import { beforeEach, expect, test, vi } from 'vitest';
@@ -23,7 +24,7 @@ const global: GlobalMountOptions = {
 	components: { publicView, vSelect, vIcon, vImage },
 	directives: { md: MarkdownDirective },
 	stubs: { routerLink: true, publicView: false },
-	plugins: [i18n],
+	plugins: [i18n, createHead()],
 };
 
 // silences locale message not found warnings

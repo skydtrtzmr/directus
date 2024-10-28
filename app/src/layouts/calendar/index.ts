@@ -139,8 +139,6 @@ export default defineLayout<LayoutOptions>({
 		);
 
 		const fullFullCalendarOptions = computed<FullCalendarOptions>(() => {
-			const displayEventTime = startDateFieldInfo.value?.type !== 'date';
-
 			const options: FullCalendarOptions = {
 				editable: true,
 				eventStartEditable: true,
@@ -159,15 +157,12 @@ export default defineLayout<LayoutOptions>({
 				},
 				views: {
 					dayGridMonth: {
-						displayEventTime,
 						eventTimeFormat: {
 							hour: 'numeric',
 							minute: '2-digit',
 							meridiem: 'narrow',
 						},
 					},
-					week: { displayEventTime },
-					day: { displayEventTime },
 				},
 				events: events.value,
 				initialDate: viewInfo.value?.startDateStr ?? formatISO(new Date()),

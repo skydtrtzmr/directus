@@ -31,10 +31,11 @@ export const rest = (config: Partial<RestConfig> = {}) => {
 				}
 
 				// we need to use THIS here instead of client to access overridden functions
-				if ('getToken' in this && 'Authorization' in options.headers === false) {
+				if ('getToken' in this) {
 					const token = await (this.getToken as StaticTokenClient<Schema>['getToken'])();
 
 					if (token) {
+						if (!options.headers) options.headers = {};
 						options.headers['Authorization'] = `Bearer ${token}`;
 					}
 				}

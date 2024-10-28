@@ -1,4 +1,4 @@
-import type { Driver, ReadOptions } from '@directus/storage';
+import type { Driver, Range } from '@directus/storage';
 import { normalizePath } from '@directus/utils';
 import { Blob, Buffer } from 'node:buffer';
 import { createHash } from 'node:crypto';
@@ -119,12 +119,10 @@ export class DriverCloudinary implements Driver {
 		return `Basic ${base64}`;
 	}
 
-	async read(filepath: string, options?: ReadOptions) {
-		const { range, version } = options ?? {};
-
+	async read(filepath: string, range?: Range) {
 		const resourceType = this.getResourceType(filepath);
 		const fullPath = this.fullPath(filepath);
-		const signature = version !== undefined ? `v${version}` : this.getParameterSignature(fullPath);
+		const signature = this.getParameterSignature(fullPath);
 		const url = `https://res.cloudinary.com/${this.cloudName}/${resourceType}/upload/${signature}/${fullPath}`;
 
 		const requestInit: RequestInit = { method: 'GET' };
@@ -267,9 +265,7 @@ export class DriverCloudinary implements Driver {
 		const chunkSize = 5.5e6;
 		let chunks = Buffer.alloc(0);
 
-		for await (let chunk of content) {
-			if (!Buffer.isBuffer(chunk)) chunk = Buffer.from(chunk);
-
+		for await (const chunk of content) {
 			// Cloudinary requires each chunk to be at least 5MB. We'll submit the chunk as soon as we
 			// reach 5.5MB to be safe
 			if (chunks.length + chunk.length <= chunkSize) {

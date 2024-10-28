@@ -146,7 +146,7 @@ import { createDirectus, rest, readRelations } from '@directus/sdk';
 
 const client = createDirectus('directus_project_url').with(rest());
 
-const result = await client.request(readRelations());
+const result = await client.request(readRelations(query_object));
 ```
 
 </template>
@@ -189,7 +189,11 @@ import { createDirectus, rest, readRelations } from '@directus/sdk';
 
 const client = createDirectus('https://directus.example.com').with(rest());
 
-const result = await client.request(readRelations());
+const result = await client.request(
+	readRelations({
+		fields: ['*'],
+	})
+);
 ```
 
 </template>
@@ -232,7 +236,7 @@ import { createDirectus, rest, readRelationByCollection } from '@directus/sdk';
 
 const client = createDirectus('directus_project_url').with(rest());
 
-const result = await client.request(readRelationByCollection(collection_name));
+const result = await client.request(readRelationByCollection(collection_name, query_object));
 ```
 
 </template>
@@ -275,7 +279,11 @@ import { createDirectus, rest, readRelationByCollection } from '@directus/sdk';
 
 const client = createDirectus('https://directus.example.com').with(rest());
 
-const result = await client.request(readRelationByCollection('articles'));
+const result = await client.request(
+	readRelationByCollection('articles', {
+		fields: ['*'],
+	})
+);
 ```
 
 </template>
@@ -311,7 +319,7 @@ import { createDirectus, rest, readRelation } from '@directus/sdk';
 
 const client = createDirectus('directus_project_url').with(rest());
 
-const result = await client.request(readRelation(collection_name, field_name));
+const result = await client.request(readRelation(collection_name, field_name, query_object));
 ```
 
 </template>
@@ -355,7 +363,11 @@ import { createDirectus, rest, readRelation } from '@directus/sdk';
 
 const client = createDirectus('https://directus.example.com').with(rest());
 
-const result = await client.request(readRelation('articles', 'authors'));
+const result = await client.request(
+	readRelation('articles', 'authors', {
+		fields: ['*'],
+	})
+);
 ```
 
 </template>

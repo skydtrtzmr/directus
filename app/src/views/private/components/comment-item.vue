@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import api from '@/api';
+import { Activity } from '@/types/activity';
 import { unexpectedError } from '@/utils/unexpected-error';
-import type { Comment, User } from '@directus/types';
+import type { User } from '@directus/types';
 import { ref, watch } from 'vue';
 import CommentInput from './comment-input.vue';
 import CommentItemHeader from './comment-item-header.vue';
 
 const props = withDefaults(
 	defineProps<{
-		comment: Comment & {
+		activity: Activity & {
 			display: string;
-			user_created: Pick<User, 'id' | 'email' | 'first_name' | 'last_name' | 'avatar'>;
+			user: Pick<User, 'id' | 'email' | 'first_name' | 'last_name' | 'avatar'>;
 		};
 		refresh: () => Promise<void>;
 		collection: string;
@@ -25,13 +26,13 @@ const props = withDefaults(
 const { editing, cancelEditing } = useEdits();
 
 function useEdits() {
-	const edits = ref(props.comment.comment);
+	const edits = ref(props.activity.comment);
 	const editing = ref(false);
 	const savingEdits = ref(false);
 
 	watch(
-		() => props.comment,
-		() => (edits.value = props.comment.comment),
+		() => props.activity,
+		() => (edits.value = props.activity.comment),
 	);
 
 	return { edits, editing, savingEdits, saveEdits, cancelEditing };
@@ -40,7 +41,7 @@ function useEdits() {
 		savingEdits.value = true;
 
 		try {
-			await api.patch(`/comments/${props.comment.id}`, {
+			await api.patch(`/activity/comment/${props.activity.id}`, {
 				comment: edits.value,
 			});
 
@@ -54,7 +55,7 @@ function useEdits() {
 	}
 
 	function cancelEditing() {
-		edits.value = props.comment.comment;
+		edits.value = props.activity.comment;
 		editing.value = false;
 	}
 }
@@ -62,11 +63,11 @@ function useEdits() {
 
 <template>
 	<div class="comment-item">
-		<comment-item-header :refresh="refresh" :comment="comment" @edit="editing = true" />
+		<comment-item-header :refresh="refresh" :activity="activity" @edit="editing = true" />
 
 		<comment-input
 			v-if="editing"
-			:existing-comment="comment"
+			:existing-comment="activity"
 			:primary-key="primaryKey"
 			:collection="collection"
 			:refresh="refresh"
@@ -74,7 +75,7 @@ function useEdits() {
 			@cancel="cancelEditing"
 		/>
 
-		<div v-else v-md="{ value: comment.display, target: '_blank' }" class="content selectable" />
+		<div v-else v-md="{ value: activity.display, target: '_blank' }" class="content selectable" />
 	</div>
 </template>
 

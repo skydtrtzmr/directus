@@ -12,13 +12,11 @@ const props = defineProps<{
 	primaryKeys: (number | string)[];
 	active?: boolean;
 	edits?: Record<string, any>;
-	stageOnSave?: boolean;
 }>();
 
 const emit = defineEmits<{
 	(e: 'update:active', value: boolean): void;
 	(e: 'refresh'): void;
-	(e: 'input', value: Record<string, any>): void;
 }>();
 
 const { t } = useI18n();
@@ -74,13 +72,6 @@ function useActions() {
 	return { save, cancel, saving, validationErrors };
 
 	async function save() {
-		if (props.stageOnSave) {
-			emit('input', internalEdits.value);
-			internalActive.value = false;
-			internalEdits.value = {};
-			return;
-		}
-
 		saving.value = true;
 
 		try {

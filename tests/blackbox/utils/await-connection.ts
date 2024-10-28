@@ -7,7 +7,7 @@ export async function awaitDatabaseConnection(database: Knex, checkSQL: string):
 		try {
 			await database.raw(checkSQL);
 			return null; // success
-		} catch {
+		} catch (error) {
 			await sleep(5000);
 			continue;
 		}

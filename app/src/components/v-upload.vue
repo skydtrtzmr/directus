@@ -130,7 +130,7 @@ function useUpload() {
 					preset,
 				});
 
-				if (uploadedFiles)
+				uploadedFiles &&
 					emit(
 						'input',
 						uploadedFiles.filter((f): f is File => !!f),
@@ -149,7 +149,7 @@ function useUpload() {
 					preset,
 				});
 
-				if (uploadedFile) emit('input', uploadedFile);
+				uploadedFile && emit('input', uploadedFile);
 				uploadController = null;
 			}
 		} catch (error) {

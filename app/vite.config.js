@@ -41,6 +41,7 @@ export default defineConfig({
 		},
 	],
 	define: {
+		__INTLIFY_JIT_COMPILATION__: true,
 		__VUE_I18N_LEGACY_API__: false,
 	},
 	resolve: {
@@ -140,12 +141,14 @@ function directusExtensions() {
 	];
 
 	async function loadExtensions() {
+		// eslint-disable-next-line no-undef
 		const localExtensions = extensionsPathExists ? await resolveFsExtensions(EXTENSIONS_PATH) : new Map();
 		const moduleExtensions = await resolveModuleExtensions(API_PATH);
 
 		const registryExtensions = extensionsPathExists
 			? await resolveFsExtensions(path.join(EXTENSIONS_PATH, '.registry'))
-			: new Map();
+			: // eslint-disable-next-line no-undef
+			  new Map();
 
 		const mockSetting = (source, folder, extension) => {
 			const settings = [

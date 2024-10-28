@@ -68,6 +68,11 @@ const flow = computed<FlowRaw | undefined>({
 
 const loading = ref(false);
 
+const exitingOperationKeys = computed(() => [
+	...(flow.value?.operations || []).map((operation) => operation.key),
+	...stagedPanels.value.filter((stagedPanel) => stagedPanel.key !== undefined).map((stagedPanel) => stagedPanel.key!),
+]);
+
 const editMode = ref(flow.value?.operations.length === 0 || props.operationId !== undefined);
 
 const confirmDelete = ref(false);
@@ -152,13 +157,6 @@ const currentOperation = computed(() => {
 		return panel.id === props.operationId;
 	});
 });
-
-const existingOperationKeys = computed(() => [
-	...(flow.value?.operations || [])
-		.filter((operation) => !panelsToBeDeleted.value.includes(operation.id))
-		.map((operation) => operation.key),
-	...stagedPanels.value.filter((stagedPanel) => stagedPanel.key !== undefined).map((stagedPanel) => stagedPanel.key!),
-]);
 
 const parentPanels = computed(() => {
 	const parents = panels.value.reduce<Record<string, ParentInfo>>((acc, panel) => {
@@ -707,7 +705,7 @@ function discardAndLeave() {
 
 		<router-view
 			:operation="currentOperation"
-			:existing-operation-keys="existingOperationKeys"
+			:existing-operation-keys="exitingOperationKeys"
 			:flow="flow"
 			@save="stageOperation"
 			@cancel="cancelOperation"

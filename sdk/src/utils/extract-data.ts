@@ -11,11 +11,8 @@ export async function extractData(response: unknown) {
 
 		if (type?.startsWith('application/json') || type?.startsWith('application/health+json')) {
 			const result = await response.json();
-
-			if (!response.ok || 'errors' in result) throw result;
-
+			if (!response.ok) throw result;
 			if ('data' in result) return result.data;
-
 			return result;
 		}
 
@@ -30,10 +27,5 @@ export async function extractData(response: unknown) {
 	}
 
 	// exception for alternatives like ofetch that don't return the Response object
-
-	if ('errors' in response) throw response;
-
-	if ('data' in response) return response.data;
-
-	return response;
+	return 'data' in response ? response.data : response;
 }

@@ -111,7 +111,7 @@ async function create(directory) {
 			cwd: rootPath,
 			stdio: 'inherit',
 		});
-	} catch {
+	} catch (err) {
 		onError({ text: 'Error while initializing the project' });
 	}
 
@@ -124,7 +124,7 @@ async function create(directory) {
 			console.log('You can update by running: ' + chalk.cyan(`npm i -g ${pkg.name}@latest`));
 			console.log();
 		}
-	} catch {
+	} catch (err) {
 		onError({
 			symbol: 'warning',
 			exit: false,

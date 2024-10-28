@@ -46,7 +46,7 @@ router.post('/', async (req, res) => {
 
   const data = await collectionsService.readOne(collectionKey);
 
-  res.json(data);
+  res.json(record);
 });
 ```
 
@@ -146,7 +146,7 @@ router.post('/', async (req, res) => {
     field.field,
   );
 
-  res.json(data);
+  res.json(createdField);
 });
 ```
 
@@ -189,7 +189,7 @@ router.patch('/', async (req, res) => {
     'field_name',
   );
 
-  res.json(data);
+  res.json(updatedField);
 });
 ```
 
@@ -251,7 +251,7 @@ router.post('/', async (req, res) => {
 
   const data = await relationsService.readOne(data);
 
-  res.json(data);
+  res.json(record);
 });
 ```
 

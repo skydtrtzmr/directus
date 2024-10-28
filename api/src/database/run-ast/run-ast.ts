@@ -71,17 +71,7 @@ export async function runAst(
 		}
 
 		// The actual knex query builder instance. This is a promise that resolves with the raw items from the db
-		const dbQuery = getDBQuery(
-			{
-				table: collection,
-				fieldNodes,
-				o2mNodes,
-				query,
-				cases,
-				permissions,
-			},
-			{ schema, knex },
-		);
+		const dbQuery = getDBQuery(schema, knex, collection, fieldNodes, o2mNodes, query, cases, permissions);
 
 		const rawItems: Item | Item[] = await dbQuery;
 

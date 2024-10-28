@@ -1,4 +1,4 @@
-import type { Driver, ReadOptions } from '@directus/storage';
+import type { Driver, Range } from '@directus/storage';
 import { normalizePath } from '@directus/utils';
 import { StorageClient } from '@supabase/storage-js';
 import { join } from 'node:path';
@@ -68,9 +68,7 @@ export class DriverSupabase implements Driver {
 		return `${this.endpoint}/${join('object/authenticated', this.config.bucket, this.fullPath(filepath))}`;
 	}
 
-	async read(filepath: string, options?: ReadOptions) {
-		const { range } = options || {};
-
+	async read(filepath: string, range?: Range) {
 		const requestInit: RequestInit = { method: 'GET' };
 
 		requestInit.headers = {

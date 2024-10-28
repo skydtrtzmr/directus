@@ -35,10 +35,9 @@ export type DirectusField<Schema = any> = {
 		schema: string;
 		data_type: string;
 		is_nullable: boolean;
-		default_value: any | null;
-		is_indexed: boolean;
-		is_generated: boolean;
 		generation_expression: unknown | null;
+		default_value: any | null;
+		is_generated: boolean;
 		max_length: number | null;
 		comment: string | null;
 		numeric_precision: number | null;

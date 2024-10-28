@@ -51,7 +51,7 @@ export class WebSocketController extends SocketController {
 
 		try {
 			message = parseJSON(data);
-		} catch {
+		} catch (err: any) {
 			throw new WebSocketError('server', 'INVALID_PAYLOAD', 'Unable to parse the incoming message.');
 		}
 

@@ -23,7 +23,7 @@ export const fetchItemPermissions = (collection: Collection, primaryKey: Primary
 
 	const fetchedItemPermissions = computedAsync(
 		async () => {
-			void refreshKey.value;
+			refreshKey.value;
 
 			const primaryKeyValue = unref(primaryKey);
 

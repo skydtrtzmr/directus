@@ -149,7 +149,6 @@ function setValueAt(index: number, newVal: any) {
 				:value="val"
 				:focus="false"
 				:choices="choices"
-				comma-allowed
 				@input="setValueAt(index, $event)"
 			/>
 		</div>

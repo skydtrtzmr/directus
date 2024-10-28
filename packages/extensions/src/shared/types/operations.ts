@@ -25,11 +25,7 @@ export interface OperationAppConfig {
 		  ) => { label: string; text: string; copyable?: boolean }[])
 		| ComponentOptions
 		| null;
-	options:
-		| DeepPartial<Field>[]
-		| ((options: Record<string, any>) => DeepPartial<Field>[])
-		| Exclude<ComponentOptions, any>
-		| null;
+	options: DeepPartial<Field>[] | ((options: Record<string, any>) => DeepPartial<Field>[]) | ComponentOptions | null;
 }
 
 export interface OperationApiConfig<Options = Record<string, unknown>> {

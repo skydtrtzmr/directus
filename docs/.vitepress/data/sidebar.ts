@@ -147,10 +147,6 @@ function sidebarDeveloperReference() {
 					text: 'Collections',
 				},
 				{
-					link: '/reference/system/comments',
-					text: 'Comments',
-				},
-				{
 					link: '/reference/system/versions',
 					text: 'Content Versions',
 				},

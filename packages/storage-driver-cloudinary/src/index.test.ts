@@ -13,7 +13,7 @@ import {
 	randGitShortSha as randUnique,
 	randWord,
 } from '@ngneat/falso';
-import { Blob, Buffer } from 'node:buffer';
+import { Blob } from 'node:buffer';
 import type { Hash } from 'node:crypto';
 import { createHash } from 'node:crypto';
 import type { ParsedPath } from 'node:path';
@@ -31,7 +31,6 @@ import { DriverCloudinary } from './index.js';
 vi.mock('@directus/utils/node');
 vi.mock('@directus/utils');
 vi.mock('node:path');
-vi.mock('node:buffer');
 vi.mock('node:crypto');
 vi.mock('undici');
 
@@ -562,7 +561,7 @@ describe('#read', () => {
 	});
 
 	test('Adds optional Range header for start', async () => {
-		await driver.read(sample.path.input, { range: { start: sample.range.start, end: undefined } });
+		await driver.read(sample.path.input, { start: sample.range.start, end: undefined });
 
 		expect(fetch).toHaveBeenCalledWith(
 			`https://res.cloudinary.com/${sample.config.cloudName}/${sample.resourceType}/upload/${sample.parameterSignature}/${sample.path.inputFull}`,
@@ -571,7 +570,7 @@ describe('#read', () => {
 	});
 
 	test('Adds optional Range header for end', async () => {
-		await driver.read(sample.path.input, { range: { start: undefined, end: sample.range.end } });
+		await driver.read(sample.path.input, { start: undefined, end: sample.range.end });
 
 		expect(fetch).toHaveBeenCalledWith(
 			`https://res.cloudinary.com/${sample.config.cloudName}/${sample.resourceType}/upload/${sample.parameterSignature}/${sample.path.inputFull}`,
@@ -580,7 +579,7 @@ describe('#read', () => {
 	});
 
 	test('Adds optional Range header for start and end', async () => {
-		await driver.read(sample.path.input, { range: sample.range });
+		await driver.read(sample.path.input, sample.range);
 
 		expect(fetch).toHaveBeenCalledWith(
 			`https://res.cloudinary.com/${sample.config.cloudName}/${sample.resourceType}/upload/${sample.parameterSignature}/${sample.path.inputFull}`,

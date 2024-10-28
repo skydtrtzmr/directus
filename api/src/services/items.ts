@@ -727,7 +727,6 @@ export class ItemsService<Item extends AnyItem = AnyItem, Collection extends str
 					action: 'update',
 					collection: this.collection,
 					primaryKeys: keys,
-					fields: Object.keys(payloadAfterHooks),
 				},
 				{
 					schema: this.schema,

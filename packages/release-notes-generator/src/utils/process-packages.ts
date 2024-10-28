@@ -1,6 +1,5 @@
-import { findWorkspacePackagesNoCheck } from '@pnpm/find-workspace-packages';
-import { type ProjectRootDir } from '@pnpm/types';
-import { createPkgGraph, Package, type PackageNode } from '@pnpm/workspace.pkgs-graph';
+import { findWorkspacePackagesNoCheck, type Project } from '@pnpm/find-workspace-packages';
+import { createPkgGraph, type PackageNode } from '@pnpm/workspace.pkgs-graph';
 import { existsSync, readFileSync, unlinkSync } from 'node:fs';
 import { join } from 'node:path';
 import semver from 'semver';
@@ -138,12 +137,7 @@ export async function processPackages(): Promise<{
 
 	function getDependentsMap() {
 		if (!dependentsMap) {
-			const pkgs = workspacePackages.map((project) => ({
-				manifest: project.manifest,
-				rootDir: project.dir as ProjectRootDir,
-			}));
-
-			const { graph } = createPkgGraph(pkgs);
+			const { graph } = createPkgGraph(workspacePackages);
 			dependentsMap = transformGraph(graph);
 		}
 
@@ -174,7 +168,7 @@ export async function processPackages(): Promise<{
 		return dependents;
 	}
 
-	function transformGraph(graph: Record<string, PackageNode<Package>>) {
+	function transformGraph(graph: Record<string, PackageNode<Project>>) {
 		const dependentsMap: Record<string, string[]> = {};
 
 		for (const dependentNodeId of Object.keys(graph)) {

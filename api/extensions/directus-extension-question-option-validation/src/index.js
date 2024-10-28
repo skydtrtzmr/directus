@@ -40,12 +40,4 @@ export default ({ filter }) => {
 	filter('q_mc_multi.items.create', validateQMcMultiCorrectOption);
 	filter('q_mc_multi.items.update', validateQMcMultiCorrectOption);
 
-	// const validateQMcBinaryOptions = async (input) => {
-	// 	if (input.mcq_type === 'binary') { // 如果是二选一（判断题）
-	// 		input.option_number = 2; // 选项数量固定为2
-	// 	}
-	// 	return input;
-	// };
-	// filter('q_mc.items.create', validateQMcBinaryOptions);
-	// filter('q_mc.items.update', validateQMcBinaryOptions);
 };

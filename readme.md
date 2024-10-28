@@ -30,20 +30,9 @@ pnpm build
 pnpm --recursive dev
 ```
 
-#### 启动后端
-
 ```bash
 pnpm --filter api dev
 ```
-
-启动后端命令行（无客户端）
-（这个命令是我自己加的，在api/package.json中。源仓库中没有这个命令。）
-
-```bash
-pnpm --filter api dev:no-client
-```
-
-#### 启动前端（热更新）
 
 ```bash
 pnpm --filter app dev
@@ -102,24 +91,3 @@ Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
     <v-input v-model="search" type="search" :placeholder="t('search_collection')" />
 </div>
 ```
-
-
-## 关于.env
-
-HOST="127.0.0.1"
-
-PORT=8057
-
-PUBLIC_URL="http://127.0.0.1:8057"
-
-DB_CLIENT="pg"
-DB_HOST="localhost"
-DB_PORT=5432
-DB_DATABASE="directus"
-DB_USER="postgres"
-DB_PASSWORD="pg19990314"
-
-
-STORAGE_LOCATIONS="local"
-STORAGE_LOCAL_DRIVER="local"
-STORAGE_LOCAL_ROOT="./uploads"

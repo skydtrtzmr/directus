@@ -247,7 +247,7 @@ validationError:
 all_access: 允许所有
 no_access: 禁止访问
 use_custom: 自定义
-nullable: 允许为空
+nullable: 允许为null
 allow_null_value: 允许NULL值
 allow_multiple: 允许多个
 allow_multiple_to_be_open: 允许打开多个
@@ -846,8 +846,8 @@ operators:
   gte: 大于或等于
   in: 属于
   nin: 不属于
-  null: 为空
-  nnull: 不是空的
+  null: 为null
+  nnull: 不是null
   contains: 包含
   ncontains: 不包含
   icontains: 包含 (大小写不敏感)

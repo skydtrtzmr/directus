@@ -30,15 +30,21 @@ export default ({ filter }) => {
 	// 以上仅供示范用。
 
 	const validateQMcMultiCorrectOption = async (input) => {
-		if (input.correct_option.length<2) {
-			throw new CustomError({
-				reason: '多选题的正确选项不能少于2个！',
-			});
+		if (input.mcq_type === 'multi') { // 如果是多选题
+			if (input.correct_options.length<2) {
+				throw new CustomError({
+					reason: '多选题的正确选项不能少于2个！',
+				});
+			}
+		}
+
+		if (input.mcq_type === 'binary') { // 如果是二选一（判断题）
+			input.option_number = 2; // 选项数量固定为2
 		}
 		return input;
 	};
-	filter('q_mc_multi.items.create', validateQMcMultiCorrectOption);
-	filter('q_mc_multi.items.update', validateQMcMultiCorrectOption);
+	filter('q_mc.items.create', validateQMcMultiCorrectOption);
+	filter('q_mc.items.update', validateQMcMultiCorrectOption);
 
 	// const validateQMcBinaryOptions = async (input) => {
 	// 	if (input.mcq_type === 'binary') { // 如果是二选一（判断题）

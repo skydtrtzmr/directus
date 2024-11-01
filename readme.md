@@ -59,6 +59,7 @@ pnpm --filter app dev
 ```json
 {"cards":{"icon":"account_circle","title":"{{ last_name }}{{ first_name }}","subtitle":"{{ email }}","size":5}}
 ```
+
 记得在数据库中修改完后，要保存数据库修改！
 
 #### 关于系统collections的字段
@@ -69,11 +70,18 @@ pnpm --filter app dev
 
 ## 密码
 
+系统管理员账号：
 用户名：
 2368178395@qq.com
 
 密码：
 19990314
+
+
+教师账号：123456@qq.com
+密码：123456
+
+
 
 ### 系统设计
 

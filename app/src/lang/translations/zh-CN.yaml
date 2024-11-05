@@ -21,14 +21,14 @@
 #'Proxy', 'Intl'
 
 about: 关于
-identifier: 标识符 # DONE  identifier: 标识符（identifier）
+identifier: 标识符 # 注释：DONE 原文为“ identifier: 标识符（identifier）”
 avatar: 头像
 application: 应用程序
 default_provider: 默认
 method: 方法
 published: 已发布
 draft: 草稿
-archived: 已归档 # DONE archive 存档都改成归档
+archived: 已归档 # 注释：DONE archive 存档都改成归档
 marketplace: 扩展集市
 extensions: 扩展
 modules: 模块
@@ -1947,6 +1947,7 @@ interfaces:
     description: 选择多项选择
   list:
     repeater: 重复器
+    # 重复器其实就是一个列表。但是目前（2024-11-05）来看，它还不支持字段翻译功能。
     description: 创建同一结构的多个条目
     edit_fields: 编辑字段
     add_label: '"创建新"标签'

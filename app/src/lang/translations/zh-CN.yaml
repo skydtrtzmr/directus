@@ -332,7 +332,7 @@ date: 日期
 date_range: 时间段
 translation_key_placeholder: 请输入键...
 datetime: 日期时间
-dateTime: 日期时间
+dateTime: 日期时间（不含时区）
 precision: 精度
 decimal: Decimal
 float: Float
@@ -692,7 +692,7 @@ field_width: 字段宽度
 add_filter: 添加过滤器
 upper_limit: 上限...
 lower_limit: 下限...
-user_directory: 用户列表
+user_directory: 用户名录 # 用户列表
 documentation: 文档
 sidebar: 侧边栏
 duration: 持续时间

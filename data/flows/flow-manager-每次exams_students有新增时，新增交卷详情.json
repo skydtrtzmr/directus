@@ -1,0 +1,117 @@
+{
+  "id": "0805b2ab-9634-4236-8943-bdb0291b6bb7",
+  "name": "每次exams_students有新增时，新增交卷详情",
+  "icon": "bolt",
+  "color": null,
+  "description": "（每次log对应一个学生",
+  "trigger": "event",
+  "options": {
+    "type": "action",
+    "scope": [
+      "items.create"
+    ],
+    "collections": [
+      "exams_students"
+    ]
+  },
+  "operation": "3f98796a-e0ec-4cab-8fc2-c7dd3d06e323",
+  "operations": [
+    {
+      "id": "092a3506-5dc0-4c10-b22f-8c027914e21e",
+      "name": "记录到控制台",
+      "key": "log_886of",
+      "type": "log",
+      "position_x": 3,
+      "position_y": 19,
+      "options": {
+        "message": "{{item_read_exams[0].paper}}"
+      },
+      "resolve": "4075532c-b40a-40b4-ba30-f88d1acb23c6",
+      "reject": null
+    },
+    {
+      "id": "27396d66-84f4-45a8-a153-5073b2a48d48",
+      "name": "记录到控制台",
+      "key": "log_bp8bp",
+      "type": "log",
+      "position_x": 38,
+      "position_y": 19,
+      "options": {
+        "message": "{{item_create_submitted_paper[0]}}"
+      },
+      "resolve": "51d26687-de16-45c1-8458-12f148b56b74",
+      "reject": null
+    },
+    {
+      "id": "3f98796a-e0ec-4cab-8fc2-c7dd3d06e323",
+      "name": "Log to Console",
+      "key": "log_to_console",
+      "type": "log",
+      "position_x": 18,
+      "position_y": 1,
+      "options": {
+        "message": "{{$trigger}}"
+      },
+      "resolve": "ea7bf149-959b-4f9b-94b8-ec16c9cf6729",
+      "reject": null
+    },
+    {
+      "id": "4075532c-b40a-40b4-ba30-f88d1acb23c6",
+      "name": "创建“交卷详情”",
+      "key": "item_create_submitted_paper",
+      "type": "item-create",
+      "position_x": 20,
+      "position_y": 19,
+      "options": {
+        "collection": "submitted_papers",
+        "payload": {
+          "source_type": "paper",
+          "source_paper": "{{item_read_exams[0].paper}}"
+        }
+      },
+      "resolve": "27396d66-84f4-45a8-a153-5073b2a48d48",
+      "reject": null
+    },
+    {
+      "id": "51d26687-de16-45c1-8458-12f148b56b74",
+      "name": "根据考试id和学生id，生成“参考详情”",
+      "key": "item_create_submitted_exam",
+      "type": "item-create",
+      "position_x": 3,
+      "position_y": 37,
+      "options": {
+        "collection": "submitted_exams",
+        "payload": {
+          "exam": "{{$trigger.payload.exams_id}}",
+          "student": "{{$trigger.payload.students_id}}",
+          "submitted_paper": "{{item_create_submitted_paper[0]}}",
+          "submit_status": "todo"
+        }
+      },
+      "resolve": null,
+      "reject": null
+    },
+    {
+      "id": "ea7bf149-959b-4f9b-94b8-ec16c9cf6729",
+      "name": "查找本场考试数据",
+      "key": "item_read_exams",
+      "type": "item-read",
+      "position_x": 35,
+      "position_y": 1,
+      "options": {
+        "collection": "exams",
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{$trigger.payload.exams_id}}"
+            }
+          }
+        }
+      },
+      "resolve": "092a3506-5dc0-4c10-b22f-8c027914e21e",
+      "reject": null
+    }
+  ],
+  "flow_manager_category": null,
+  "accountability": "all"
+}

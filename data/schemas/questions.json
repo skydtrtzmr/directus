@@ -922,7 +922,7 @@
                 "name": "stem",
                 "table": "questions",
                 "data_type": "text",
-                "default_value": null,
+                "default_value": "暂无",
                 "generation_expression": null,
                 "max_length": null,
                 "numeric_precision": null,
@@ -942,72 +942,25 @@
                 "collection": "questions",
                 "field": "stem",
                 "special": null,
-                "interface": "input-rich-text-md",
-                "options": null,
-                "display": null,
+                "interface": "computed",
+                "options": {
+                    "template": "{{ IFS( AND(EQUAL(type, \"q_mc_single\"), NOT_NULL(q_mc_single)),  q_mc_single.stem,  EQUAL(type, \"q_mc_multi\"), q_mc_multi.stem, EQUAL(type, \"q_mc_binary\"), q_mc_binary.stem, EQUAL(type, \"q_mc_flexible\"), q_mc_flexible.stem, NOT_NULL(\"1\"), \"暂无题干信息\") }}",
+                    "mode": "readonly",
+                    "debugMode": false,
+                    "initialCompute": true,
+                    "computeIfEmpty": false,
+                    "customCss": null
+                },
+                "display": "raw",
                 "display_options": null,
                 "readonly": false,
-                "hidden": true,
+                "hidden": false,
                 "sort": 15,
                 "width": "full",
                 "translations": [
                     {
                         "language": "zh-CN",
                         "translation": "题干"
-                    }
-                ],
-                "note": null,
-                "conditions": null,
-                "required": false,
-                "group": null,
-                "validation": null,
-                "validation_message": null
-            }
-        },
-        {
-            "collection": "questions",
-            "field": "q_stem",
-            "type": "text",
-            "schema": {
-                "name": "q_stem",
-                "table": "questions",
-                "data_type": "text",
-                "default_value": null,
-                "generation_expression": null,
-                "max_length": null,
-                "numeric_precision": null,
-                "numeric_scale": null,
-                "is_generated": false,
-                "is_nullable": true,
-                "is_unique": false,
-                "is_indexed": false,
-                "is_primary_key": false,
-                "has_auto_increment": false,
-                "foreign_key_schema": null,
-                "foreign_key_table": null,
-                "foreign_key_column": null,
-                "comment": null
-            },
-            "meta": {
-                "collection": "questions",
-                "field": "q_stem",
-                "special": null,
-                "interface": "computed",
-                "options": {
-                    "template": "{{ IFS( EQUAL(type, \"q_mc_single\"),  q_mc_single.stem,  EQUAL(type, \"q_mc_multi\"), q_mc_multi) }}",
-                    "mode": null,
-                    "debugMode": true
-                },
-                "display": "raw",
-                "display_options": null,
-                "readonly": false,
-                "hidden": false,
-                "sort": 17,
-                "width": "full",
-                "translations": [
-                    {
-                        "language": "zh-CN",
-                        "translation": "题干（自动）"
                     }
                 ],
                 "note": "新尝试，用computed字段自动获取",
@@ -1056,7 +1009,7 @@
                 },
                 "readonly": false,
                 "hidden": false,
-                "sort": 18,
+                "sort": 16,
                 "width": "full",
                 "translations": [
                     {
@@ -1104,7 +1057,7 @@
                 ],
                 "interface": "select-dropdown-m2o",
                 "options": {
-                    "template": "{{stem}}",
+                    "template": "【点击编辑题目内容】",
                     "enableSelect": false
                 },
                 "display": "related-values",
@@ -1113,7 +1066,7 @@
                 },
                 "readonly": false,
                 "hidden": true,
-                "sort": 19,
+                "sort": 17,
                 "width": "full",
                 "translations": [
                     {
@@ -1188,7 +1141,7 @@
                 },
                 "readonly": false,
                 "hidden": true,
-                "sort": 20,
+                "sort": 18,
                 "width": "full",
                 "translations": [
                     {
@@ -1263,7 +1216,7 @@
                 },
                 "readonly": false,
                 "hidden": true,
-                "sort": 21,
+                "sort": 19,
                 "width": "full",
                 "translations": [
                     {
@@ -1338,7 +1291,7 @@
                 },
                 "readonly": false,
                 "hidden": true,
-                "sort": 22,
+                "sort": 20,
                 "width": "full",
                 "translations": [
                     {
@@ -1408,7 +1361,7 @@
                 "display_options": null,
                 "readonly": false,
                 "hidden": true,
-                "sort": 23,
+                "sort": 21,
                 "width": "full",
                 "translations": [
                     {
@@ -1458,7 +1411,7 @@
                 "display_options": null,
                 "readonly": false,
                 "hidden": false,
-                "sort": 24,
+                "sort": 22,
                 "width": "full",
                 "translations": [
                     {

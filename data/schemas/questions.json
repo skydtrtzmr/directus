@@ -305,7 +305,7 @@
                 "display": null,
                 "display_options": null,
                 "readonly": false,
-                "hidden": false,
+                "hidden": true,
                 "sort": 4,
                 "width": "full",
                 "translations": [
@@ -381,33 +381,37 @@
                 },
                 "display": "labels",
                 "display_options": {
-                    "format": false,
                     "choices": [
                         {
                             "text": "单选题",
-                            "value": "q_mc_single"
+                            "value": "q_mc_single",
+                            "color": "#3399FF"
                         },
                         {
                             "text": "多选题",
-                            "value": "q_mc_multi"
+                            "value": "q_mc_multi",
+                            "color": "#53EA9C"
+                        },
+                        {
+                            "text": "判断题",
+                            "value": "q_mc_binary",
+                            "color": "#FFA439"
+                        },
+                        {
+                            "text": "不定项选择题",
+                            "value": "q_mc_flexible",
+                            "color": "#E25A83"
                         },
                         {
                             "text": "填空题",
                             "value": "q_fib"
                         },
                         {
-                            "text": "不定项选择题",
-                            "value": "q_mc_flexible"
-                        },
-                        {
                             "text": "选择题",
                             "value": "q_mc"
-                        },
-                        {
-                            "text": "判断题",
-                            "value": "q_mc_binary"
                         }
-                    ]
+                    ],
+                    "format": false
                 },
                 "readonly": false,
                 "hidden": false,
@@ -916,63 +920,6 @@
         },
         {
             "collection": "questions",
-            "field": "stem",
-            "type": "text",
-            "schema": {
-                "name": "stem",
-                "table": "questions",
-                "data_type": "text",
-                "default_value": "暂无",
-                "generation_expression": null,
-                "max_length": null,
-                "numeric_precision": null,
-                "numeric_scale": null,
-                "is_generated": false,
-                "is_nullable": true,
-                "is_unique": false,
-                "is_indexed": false,
-                "is_primary_key": false,
-                "has_auto_increment": false,
-                "foreign_key_schema": null,
-                "foreign_key_table": null,
-                "foreign_key_column": null,
-                "comment": null
-            },
-            "meta": {
-                "collection": "questions",
-                "field": "stem",
-                "special": null,
-                "interface": "computed",
-                "options": {
-                    "template": "{{ IFS( AND(EQUAL(type, \"q_mc_single\"), NOT_NULL(q_mc_single)),  q_mc_single.stem,  EQUAL(type, \"q_mc_multi\"), q_mc_multi.stem, EQUAL(type, \"q_mc_binary\"), q_mc_binary.stem, EQUAL(type, \"q_mc_flexible\"), q_mc_flexible.stem, NOT_NULL(\"1\"), \"暂无题干信息\") }}",
-                    "mode": "readonly",
-                    "debugMode": false,
-                    "initialCompute": true,
-                    "computeIfEmpty": false,
-                    "customCss": null
-                },
-                "display": "raw",
-                "display_options": null,
-                "readonly": false,
-                "hidden": false,
-                "sort": 15,
-                "width": "full",
-                "translations": [
-                    {
-                        "language": "zh-CN",
-                        "translation": "题干"
-                    }
-                ],
-                "note": "新尝试，用computed字段自动获取",
-                "conditions": null,
-                "required": false,
-                "group": null,
-                "validation": null,
-                "validation_message": null
-            }
-        },
-        {
-            "collection": "questions",
             "field": "question_group",
             "type": "uuid",
             "schema": {
@@ -1008,17 +955,111 @@
                     "template": "{{shared_stem}}"
                 },
                 "readonly": false,
-                "hidden": false,
-                "sort": 16,
-                "width": "full",
+                "hidden": true,
+                "sort": 15,
+                "width": "half",
                 "translations": [
                     {
                         "language": "zh-CN",
-                        "translation": "所属题组|公共题干"
+                        "translation": "所属题组"
+                    }
+                ],
+                "note": "若不填则为普通独立题目",
+                "conditions": [
+                    {
+                        "name": "仅在不定项选择题时显示",
+                        "rule": {
+                            "_and": [
+                                {
+                                    "type": {
+                                        "_eq": "q_mc_flexible"
+                                    }
+                                }
+                            ]
+                        },
+                        "hidden": false,
+                        "options": {
+                            "enableCreate": true,
+                            "enableSelect": true,
+                            "template": "{{shared_stem}}"
+                        }
+                    }
+                ],
+                "required": false,
+                "group": null,
+                "validation": null,
+                "validation_message": null
+            }
+        },
+        {
+            "collection": "questions",
+            "field": "group_sort",
+            "type": "integer",
+            "schema": {
+                "name": "group_sort",
+                "table": "questions",
+                "data_type": "integer",
+                "default_value": null,
+                "generation_expression": null,
+                "max_length": null,
+                "numeric_precision": 32,
+                "numeric_scale": 0,
+                "is_generated": false,
+                "is_nullable": true,
+                "is_unique": false,
+                "is_indexed": false,
+                "is_primary_key": false,
+                "has_auto_increment": false,
+                "foreign_key_schema": null,
+                "foreign_key_table": null,
+                "foreign_key_column": null,
+                "comment": null
+            },
+            "meta": {
+                "collection": "questions",
+                "field": "group_sort",
+                "special": null,
+                "interface": "input",
+                "options": {
+                    "min": 1
+                },
+                "display": "raw",
+                "display_options": null,
+                "readonly": false,
+                "hidden": false,
+                "sort": 16,
+                "width": "half",
+                "translations": [
+                    {
+                        "language": "zh-CN",
+                        "translation": "题组内排序"
                     }
                 ],
                 "note": null,
-                "conditions": null,
+                "conditions": [
+                    {
+                        "name": "无题组时不显示",
+                        "rule": {
+                            "_and": [
+                                {
+                                    "question_group": {
+                                        "_null": true
+                                    }
+                                }
+                            ]
+                        },
+                        "hidden": false,
+                        "required": false,
+                        "options": {
+                            "font": "sans-serif",
+                            "trim": false,
+                            "masked": false,
+                            "clear": false,
+                            "slug": false,
+                            "min": null
+                        }
+                    }
+                ],
                 "required": false,
                 "group": null,
                 "validation": null,
@@ -1057,7 +1098,7 @@
                 ],
                 "interface": "select-dropdown-m2o",
                 "options": {
-                    "template": "【点击编辑题目内容】",
+                    "template": "【点击编辑详情】",
                     "enableSelect": false
                 },
                 "display": "related-values",
@@ -1132,7 +1173,7 @@
                 ],
                 "interface": "select-dropdown-m2o",
                 "options": {
-                    "template": "{{stem}}",
+                    "template": "【点击编辑详情】",
                     "enableSelect": false
                 },
                 "display": "related-values",
@@ -1207,7 +1248,7 @@
                 ],
                 "interface": "select-dropdown-m2o",
                 "options": {
-                    "template": "{{stem}}",
+                    "template": "【点击编辑详情】",
                     "enableSelect": false
                 },
                 "display": "related-values",
@@ -1282,7 +1323,7 @@
                 ],
                 "interface": "select-dropdown-m2o",
                 "options": {
-                    "template": "{{stem}}",
+                    "template": "【点击编辑详情】",
                     "enableSelect": false
                 },
                 "display": "related-values",
@@ -1379,13 +1420,70 @@
         },
         {
             "collection": "questions",
+            "field": "stem",
+            "type": "text",
+            "schema": {
+                "name": "stem",
+                "table": "questions",
+                "data_type": "text",
+                "default_value": "默认值为暂无题干",
+                "generation_expression": null,
+                "max_length": null,
+                "numeric_precision": null,
+                "numeric_scale": null,
+                "is_generated": false,
+                "is_nullable": true,
+                "is_unique": false,
+                "is_indexed": false,
+                "is_primary_key": false,
+                "has_auto_increment": false,
+                "foreign_key_schema": null,
+                "foreign_key_table": null,
+                "foreign_key_column": null,
+                "comment": null
+            },
+            "meta": {
+                "collection": "questions",
+                "field": "stem",
+                "special": null,
+                "interface": "computed",
+                "options": {
+                    "template": "{{ IFS( AND(EQUAL(type, \"q_mc_single\"), NOT_NULL(q_mc_single)),  q_mc_single.stem,  AND(EQUAL(type, \"q_mc_multi\"), NOT_NULL(q_mc_multi)), q_mc_multi.stem, AND(EQUAL(type, \"q_mc_binary\"), NOT_NULL(q_mc_binary)), q_mc_binary.stem, AND(EQUAL(type, \"q_mc_flexible\"),NOT_NULL(q_mc_flexible)), q_mc_flexible.stem, NOT_NULL(\"1\"), \"暂无题干信息\") }}",
+                    "mode": "readonly",
+                    "debugMode": false,
+                    "initialCompute": false,
+                    "computeIfEmpty": false,
+                    "customCss": null
+                },
+                "display": "raw",
+                "display_options": null,
+                "readonly": false,
+                "hidden": false,
+                "sort": 22,
+                "width": "full",
+                "translations": [
+                    {
+                        "language": "zh-CN",
+                        "translation": "题干"
+                    }
+                ],
+                "note": "新尝试，用computed字段自动获取",
+                "conditions": null,
+                "required": false,
+                "group": null,
+                "validation": null,
+                "validation_message": null
+            }
+        },
+        {
+            "collection": "questions",
             "field": "analysis",
             "type": "text",
             "schema": {
                 "name": "analysis",
                 "table": "questions",
                 "data_type": "text",
-                "default_value": null,
+                "default_value": "默认值为暂无解析",
                 "generation_expression": null,
                 "max_length": null,
                 "numeric_precision": null,
@@ -1405,21 +1503,28 @@
                 "collection": "questions",
                 "field": "analysis",
                 "special": null,
-                "interface": "input-rich-text-md",
-                "options": null,
-                "display": null,
+                "interface": "computed",
+                "options": {
+                    "template": "{{ IFS( AND(EQUAL(type, \"q_mc_single\"), NOT_NULL(q_mc_single)),  q_mc_single.analysis,  AND(EQUAL(type, \"q_mc_multi\"), NOT_NULL(q_mc_multi)), q_mc_multi.analysis, AND(EQUAL(type, \"q_mc_binary\"), NOT_NULL(q_mc_binary)), q_mc_binary.analysis, AND(EQUAL(type, \"q_mc_flexible\"),NOT_NULL(q_mc_flexible)), q_mc_flexible.analysis, NOT_NULL(\"1\"), \"暂无题干信息\") }}",
+                    "mode": "readonly",
+                    "debugMode": true,
+                    "initialCompute": true,
+                    "computeIfEmpty": false,
+                    "customCss": null
+                },
+                "display": "raw",
                 "display_options": null,
                 "readonly": false,
                 "hidden": false,
-                "sort": 22,
+                "sort": 23,
                 "width": "full",
                 "translations": [
                     {
                         "language": "zh-CN",
-                        "translation": "题目解析"
+                        "translation": "解析"
                     }
                 ],
-                "note": null,
+                "note": "用computed字段自动获取",
                 "conditions": null,
                 "required": false,
                 "group": null,
@@ -1633,7 +1738,7 @@
                 "one_collection_field": null,
                 "one_allowed_collections": null,
                 "junction_field": null,
-                "sort_field": null,
+                "sort_field": "group_sort",
                 "one_deselect_action": "nullify"
             }
         }

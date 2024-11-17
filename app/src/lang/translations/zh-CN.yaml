@@ -692,7 +692,7 @@ field_width: 字段宽度
 add_filter: 添加过滤器
 upper_limit: 上限...
 lower_limit: 下限...
-user_directory: 用户列表
+user_directory: 用户名录 # 用户列表
 documentation: 文档
 sidebar: 侧边栏
 duration: 持续时间

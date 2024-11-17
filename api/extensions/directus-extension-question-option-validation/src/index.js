@@ -1,5 +1,6 @@
 import { createError } from "@directus/errors";
 
+// TODO 命名已经有改动了，需要修改
 
 // 笔记：这里extensions的意思是扩展字段，可以用来传递更多的信息
 export const messageConstructor = ({ reason }) => `\n${reason}`;

@@ -95,9 +95,15 @@ flow中，用脚本来把对象添加到列表的属性中，从而解决数据�
 关于题型，参考这篇文章：
 https://testfellow.com/what-are-mcqs/#google_vignette
 
-
 ## directus Admin静态密钥：
-Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
+
+2368178395@qq.com：
+YQSH47GeRT8le9Tp7HeqKlnjiimDgwC5
+
+skydtrtzmr@gmail.com：
+xoMOrTYoHHIB4oa8nNCHjlNfZWMR8ykM
+
+更新时间：2024-11-17.
 
 #### 注意
 
@@ -116,9 +122,9 @@ Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
 
 HOST="127.0.0.1"
 
-PORT=8057
+PORT=8055
 
-PUBLIC_URL="http://127.0.0.1:8057"
+PUBLIC_URL="http://127.0.0.1:8055"
 
 DB_CLIENT="pg"
 DB_HOST="localhost"
@@ -131,3 +137,4 @@ DB_PASSWORD="pg19990314"
 STORAGE_LOCATIONS="local"
 STORAGE_LOCAL_DRIVER="local"
 STORAGE_LOCAL_ROOT="./uploads"
+

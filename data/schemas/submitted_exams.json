@@ -68,7 +68,7 @@
                 "display": null,
                 "display_options": null,
                 "readonly": true,
-                "hidden": false,
+                "hidden": true,
                 "sort": 1,
                 "width": "full",
                 "translations": null,
@@ -293,10 +293,10 @@
                     "date-created"
                 ],
                 "interface": "datetime",
-                "options": null,
+                "options": {},
                 "display": "datetime",
                 "display_options": {
-                    "relative": true
+                    "format": "yyyy年MM月dd日 HH:mm"
                 },
                 "readonly": true,
                 "hidden": false,
@@ -464,7 +464,7 @@
                 "translations": [
                     {
                         "language": "zh-CN",
-                        "translation": "考试"
+                        "translation": "考试名称"
                     }
                 ],
                 "note": null,
@@ -548,11 +548,13 @@
                     "enableCreate": false,
                     "enableSelect": false
                 },
-                "display": null,
-                "display_options": null,
+                "display": "related-values",
+                "display_options": {
+                    "template": "{{source_paper_prototype}}"
+                },
                 "readonly": false,
                 "hidden": false,
-                "sort": 11,
+                "sort": 10,
                 "width": "full",
                 "translations": [
                     {
@@ -693,7 +695,7 @@
                 },
                 "readonly": false,
                 "hidden": true,
-                "sort": 12,
+                "sort": 11,
                 "width": "full",
                 "translations": [
                     {
@@ -781,12 +783,12 @@
                 },
                 "readonly": false,
                 "hidden": false,
-                "sort": 13,
+                "sort": 12,
                 "width": "full",
                 "translations": [
                     {
                         "language": "zh-CN",
-                        "translation": "交卷状态"
+                        "translation": "答卷状态"
                     }
                 ],
                 "note": null,
@@ -799,10 +801,10 @@
         },
         {
             "collection": "submitted_exams",
-            "field": "start_timestamp",
+            "field": "actual_start_time",
             "type": "timestamp",
             "schema": {
-                "name": "start_timestamp",
+                "name": "actual_start_time",
                 "table": "submitted_exams",
                 "data_type": "timestamp with time zone",
                 "default_value": null,
@@ -823,12 +825,60 @@
             },
             "meta": {
                 "collection": "submitted_exams",
-                "field": "start_timestamp",
+                "field": "actual_start_time",
                 "special": null,
                 "interface": "datetime",
-                "options": {
-                    "includeSeconds": true
-                },
+                "options": null,
+                "display": null,
+                "display_options": null,
+                "readonly": false,
+                "hidden": false,
+                "sort": 13,
+                "width": "half",
+                "translations": [
+                    {
+                        "language": "zh-CN",
+                        "translation": "实际开始时间"
+                    }
+                ],
+                "note": null,
+                "conditions": null,
+                "required": false,
+                "group": null,
+                "validation": null,
+                "validation_message": null
+            }
+        },
+        {
+            "collection": "submitted_exams",
+            "field": "actual_end_time",
+            "type": "timestamp",
+            "schema": {
+                "name": "actual_end_time",
+                "table": "submitted_exams",
+                "data_type": "timestamp with time zone",
+                "default_value": null,
+                "generation_expression": null,
+                "max_length": null,
+                "numeric_precision": null,
+                "numeric_scale": null,
+                "is_generated": false,
+                "is_nullable": true,
+                "is_unique": false,
+                "is_indexed": false,
+                "is_primary_key": false,
+                "has_auto_increment": false,
+                "foreign_key_schema": null,
+                "foreign_key_table": null,
+                "foreign_key_column": null,
+                "comment": null
+            },
+            "meta": {
+                "collection": "submitted_exams",
+                "field": "actual_end_time",
+                "special": null,
+                "interface": "datetime",
+                "options": null,
                 "display": "datetime",
                 "display_options": null,
                 "readonly": false,
@@ -838,7 +888,7 @@
                 "translations": [
                     {
                         "language": "zh-CN",
-                        "translation": "学生开始答题时间"
+                        "translation": "实际交卷时间"
                     }
                 ],
                 "note": null,
@@ -851,10 +901,64 @@
         },
         {
             "collection": "submitted_exams",
-            "field": "end_timestamp",
+            "field": "extra_time",
+            "type": "integer",
+            "schema": {
+                "name": "extra_time",
+                "table": "submitted_exams",
+                "data_type": "integer",
+                "default_value": 0,
+                "generation_expression": null,
+                "max_length": null,
+                "numeric_precision": 32,
+                "numeric_scale": 0,
+                "is_generated": false,
+                "is_nullable": true,
+                "is_unique": false,
+                "is_indexed": false,
+                "is_primary_key": false,
+                "has_auto_increment": false,
+                "foreign_key_schema": null,
+                "foreign_key_table": null,
+                "foreign_key_column": null,
+                "comment": null
+            },
+            "meta": {
+                "collection": "submitted_exams",
+                "field": "extra_time",
+                "special": null,
+                "interface": "input",
+                "options": {
+                    "min": 0
+                },
+                "display": "formatted-value",
+                "display_options": {
+                    "color": "#3399FF"
+                },
+                "readonly": false,
+                "hidden": false,
+                "sort": 15,
+                "width": "half",
+                "translations": [
+                    {
+                        "language": "zh-CN",
+                        "translation": "延时"
+                    }
+                ],
+                "note": "指定延时的时长（单位：分钟）。",
+                "conditions": null,
+                "required": false,
+                "group": null,
+                "validation": null,
+                "validation_message": null
+            }
+        },
+        {
+            "collection": "submitted_exams",
+            "field": "expected_end_time",
             "type": "timestamp",
             "schema": {
-                "name": "end_timestamp",
+                "name": "expected_end_time",
                 "table": "submitted_exams",
                 "data_type": "timestamp with time zone",
                 "default_value": null,
@@ -875,25 +979,25 @@
             },
             "meta": {
                 "collection": "submitted_exams",
-                "field": "end_timestamp",
+                "field": "expected_end_time",
                 "special": null,
                 "interface": "datetime",
                 "options": {
                     "includeSeconds": true
                 },
-                "display": "datetime",
+                "display": null,
                 "display_options": null,
-                "readonly": false,
+                "readonly": true,
                 "hidden": false,
-                "sort": 15,
+                "sort": 16,
                 "width": "half",
                 "translations": [
                     {
                         "language": "zh-CN",
-                        "translation": "学生结束答题时间（交卷时间）"
+                        "translation": "自动结束时间"
                     }
                 ],
-                "note": null,
+                "note": "=实际开考时间+考试时长+延时时间",
                 "conditions": null,
                 "required": false,
                 "group": null,

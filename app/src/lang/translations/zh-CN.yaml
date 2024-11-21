@@ -332,7 +332,7 @@ date: 日期
 date_range: 时间段
 translation_key_placeholder: 请输入键...
 datetime: 日期时间
-dateTime: 日期时间
+dateTime: 日期时间（不含时区）
 precision: 精度
 decimal: Decimal
 float: Float

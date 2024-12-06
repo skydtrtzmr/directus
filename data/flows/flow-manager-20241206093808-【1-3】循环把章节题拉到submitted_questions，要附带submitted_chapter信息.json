@@ -144,12 +144,13 @@
         "payload": {
           "question_type": "{{item_read_question[0].type}}",
           "question": "{{$trigger.questions_id}}",
+          "sort_in_chapter": "{{$trigger.sort_in_chapter}}",
           "submitted_paper_chapter": "{{$trigger.submitted_paper_chapter}}",
           "point_value": "{{point_values.questionPointValue}}",
           "incomplete_point_value": "{{point_values.questionIncompletePointValue}}"
         }
       },
-      "resolve": "521a7ed1-42a6-4bb8-8633-6b174475769b",
+      "resolve": null,
       "reject": null
     },
     {

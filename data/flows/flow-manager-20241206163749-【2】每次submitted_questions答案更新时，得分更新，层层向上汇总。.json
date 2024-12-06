@@ -232,7 +232,7 @@
       "position_x": 39,
       "position_y": 73,
       "options": {
-        "code": "module.exports = async function(data) {\n    const paper_chapter_list = data.submitted_paper_chapters;\n\tlet sum_chapter_score = paper_chapter_list\n    \t.reduce((sum, item) => sum + Number(item.score), 0);\n\treturn sum_chapter_score;\n}"
+        "code": "module.exports = async function(data) {\n    const paper_chapter_list = data.item_read_paper_chapters;\n\tlet sum_chapter_score = paper_chapter_list\n    \t.reduce((sum, item) => sum + Number(item.score), 0);\n\treturn sum_chapter_score;\n}"
       },
       "resolve": "354ff1cc-6697-4544-8aaa-e44d8026a84a",
       "reject": null

@@ -32,6 +32,8 @@ pnpm --recursive dev
 
 #### 启动后端
 
+启动后端加上build过的前端代码（不能热更新）
+
 ```bash
 pnpm --filter api dev
 ```

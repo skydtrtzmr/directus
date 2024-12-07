@@ -1,15 +1,15 @@
-export default ({ filter }, context) => {
-	const { services, getSchema } = context; // getSchema is a function that returns the schema of the current collection
+export default ({ filter }, { env, services, getSchema }) => {
 	const { ItemsService, UsersService, RolesService, PermissionsService } = services; // get the services we need
 
-	filter('students.items.create', (input, meta, context) => {
+	filter('students.items.create', async (payload, meta, context) => {
+		// const schema = await getSchema();
 		console.log('Creating Student Item!');
 
-		input.number = 1706;
+		payload.number = 1706;
 
 		// const schema = await getSchema(); // 会报错
 		// const { accountability } = context;
-		// const itemsService = new ItemsService('students', { schema });
+		// let itemsService = new ItemsService('students', { schema: context.schema, accountability: context.accountability });
 
 		// const data = await itemsService.createOne({
 		// 	number: 22,
@@ -17,6 +17,6 @@ export default ({ filter }, context) => {
 		// 	name: 'This is our first article',
 		// });
 
-		return input;
+		return payload;
 	});
 };

@@ -30,6 +30,8 @@ pnpm build
 pnpm --recursive dev
 ```
 
+[2024-12-08]注意！现在开启Redis了，记得启动Redis再运行dev命令。
+
 #### 启动后端
 
 启动后端加上build过的前端代码（不能热更新）

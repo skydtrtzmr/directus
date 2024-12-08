@@ -1,17 +1,8 @@
+// 此项目作示例作用，供插件开发参考。
 import { defineHook } from '@directus/extensions-sdk';
 import type { HookExtensionContext } from '@directus/extensions';
 import type { EventContext } from '@directus/types';
 import type { RegisterFunctions } from '@directus/extensions';
-
-// export default defineHook((register, context: HookExtensionContext) => {
-//     deleteUnusedM2OItems(register, context, {
-//         oneCollection: "meta_infos",
-//         manyCollections: {
-//             pages: "pages",
-//             posts: "posts",
-//         },
-//     });
-// });
 
 type ManyField = string;
 
@@ -26,6 +17,7 @@ type ManyCollection = string;
 // 	};
 // };
 
+// 当O2M的M端的项都被删除了的时候，把对应的O端的项也删除。
 export default defineHook(({ action }: RegisterFunctions, { services, getSchema }: HookExtensionContext) => {
 	action('items.update', handler);
 	action('items.delete', handler);

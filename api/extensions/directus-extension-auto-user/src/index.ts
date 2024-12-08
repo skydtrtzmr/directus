@@ -24,6 +24,18 @@ export default defineHook(({ filter, action }: RegisterFunctions, { services, ge
 			schema: await getSchema(),
 		});
 
+		type DirectusRoles = {
+			children: any[] | DirectusRoles[];
+			description?: string | null;
+			icon: string;
+			id: string;
+			name: string;
+			parent?: string | DirectusRoles | null;
+			policies: any[];
+			users: any[];
+			users_group: string;
+		};
+
 		log('meta：');
 		log(meta);
 		log('context：');
@@ -41,18 +53,6 @@ export default defineHook(({ filter, action }: RegisterFunctions, { services, ge
 				...context,
 				schema: await getSchema(),
 			});
-
-			type DirectusRoles = {
-				children: any[] | DirectusRoles[];
-				description?: string | null;
-				icon: string;
-				id: string;
-				name: string;
-				parent?: string | DirectusRoles | null;
-				policies: any[];
-				users: any[];
-				users_group: string;
-			};
 
 			// 获取角色列表
 			const roles: DirectusRoles[] = await rolesService.readByQuery({

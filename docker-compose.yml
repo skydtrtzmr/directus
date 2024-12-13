@@ -1,175 +1,79 @@
-# This compose file is meant to spin up a copy of supported database vendors,
-# Redis, S3 (Minio) and a fake SMTP server (MailDev).
-#
-# ONLY FOR DEBUGGING. THIS IS NOT INTENDED FOR PRODUCTION USE.
-#
-# For production use see the docker compose file example in the docs:
-#     https://docs.directus.io/self-hosted/docker-guide.html#example-docker-compose
-#
-# For receiving emails via MailDev, you'll need to add the following to your env:
-#   EMAIL_FROM=directus@directus.io
-#   EMAIL_TRANSPORT=smtp
-#   EMAIL_SMTP_HOST=0.0.0.0
-#   EMAIL_SMTP_PORT=1025
-#
-# Ports:
-#   Maildev SMTP:    1025
-#   Maildev Web-UI:  1080
-#   Postgres:        5100
-#   MySQL (8):       5101
-#   MariaDB:         5102
-#   MS SQL:          5103
-#   Oracle:          5104
-#   Redis:           5105
-#   Minio (S3):      5106
-#   Azure            5107
-#   MySQL (5.7):     5108
-#   Keycloak:        5110
-#   Postgres (10):   5111
-#   Minio Admin:     5112
-#   CockroachDB:     5113
-#
-# Credentials:
-#   Postgres:
-#     User:          postgres
-#     Password:      secret
-#
-#   MySQL:
-#     User:          root
-#     Password:      secret
-#
-#   MariaDB:
-#     User:          root
-#     Password:      secret
-#
-#   MS SQL:
-#     User:          sa
-#     Password:      Test@123
-#
-#   Oracle DB:
-#     User:          secretsysuser
-#     Password:      secretpassword
-#     Role:          SYSDEFAULT
-#     SID:           XE
-#
-#   Redis:
-#     n/a
-#
-#   Minio:
-#     Key:           minioadmin
-#     Secret:        minioadmin
-#     (Make sure to set S3_FORCE_PATH_STYLE to true)
-#
-#   Azure Blob Storage
-#     Name:          devstoreaccount1
-#     Key:           Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==
-#     Container:     devstoreaccount1
-#
-#   Keycloak
-#     User:          admin
-#     Password:      secret
-#
-#   CockroachDB
-#     User:          admin
-#     Password:      --
-
-version: '3.8'
-
+version: "3"
 services:
-  postgres:
-    image: postgis/postgis:13-3.4-alpine
+  database:
+    image: postgis/postgis:16-master
+    # Required when running on platform other than amd64, like Apple M1/M2:
+    # platform: linux/amd64
+    ports:
+      - 5433:5432
+    volumes:
+      # 这里宿主机路径，正常安装pgsql的话是在PostgreSQL/{version}/data/下，这里可以映射到容器内的/var/lib/postgresql/data/
+      - ./data/database:/var/lib/postgresql/data
+      # 这里的相对路径是相对于执行docker compose up命令的目录。
     environment:
-      POSTGRES_PASSWORD: secret
-      POSTGRES_DB: directus
-    ports:
-      - 5100:5432
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "pg19990314"
+      POSTGRES_DB: "directus"
+    healthcheck:
+      test: [ "CMD", "pg_isready", "--host=localhost", "--username=postgres" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_interval: 5s
+      start_period: 30s
 
-  postgres10:
-    image: postgis/postgis:10-3.2-alpine
+  cache:
+    image: redis:6
+    healthcheck:
+      test: [ "CMD-SHELL", "[ $$(redis-cli ping) = 'PONG' ]" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_interval: 5s
+      start_period: 30s
+
+  directus:
+    image: directus/directus:11.3.2
+    ports:
+      - 8056:8055
+    # 注意volume的路径，默认是在根目录的uploads和extensions下，而开发时是在api目录下。记得复制出来，不要污染源代码。
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+    depends_on:
+      database:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
     environment:
-      POSTGRES_PASSWORD: secret
-      POSTGRES_DB: directus
-    ports:
-      - 5111:5432
+      SECRET: "replace-with-secure-random-value"
 
-  mysql:
-    image: mysql:8
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: directus
-    ports:
-      - 5101:3306
+      # 注意这边信息要与上面database的POSTGRES_USER、POSTGRES_PASSWORD、POSTGRES_DB保持一致
+      # DB_CLIENT: "pg"
+      # DB_HOST: "database"
+      # DB_PORT: "5432"
+      # DB_DATABASE: "directus"
+      # DB_USER: "directus"
+      # DB_PASSWORD: "directus"
+      DB_CLIENT: "pg"
+      DB_HOST: "database"
+      DB_PORT: "5432"
+      DB_DATABASE: "directus"
+      DB_USER: "postgres"
+      DB_PASSWORD: "pg19990314"
 
-  mysql5:
-    image: mysql:5
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: directus
-    ports:
-      - 5108:3306
+      CACHE_ENABLED: "true"
+      CACHE_AUTO_PURGE: "true"
+      CACHE_STORE: "redis"
+      REDIS: "redis://cache:6379"
 
-  maria:
-    image: mariadb:11.4
-    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    environment:
-      MYSQL_ROOT_PASSWORD: secret
-      MYSQL_DATABASE: directus
-    ports:
-      - 5102:3306
+      ADMIN_EMAIL: "admin@example.com"
+      ADMIN_PASSWORD: "d1r3ctu5"
+      # Make sure to set this in production
+      # (see https://docs.directus.io/self-hosted/config-options#general)
+      # PUBLIC_URL: "https://directus.example.com"
 
-  mssql:
-    image: mcr.microsoft.com/mssql/server:2019-latest
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Test@123
-    ports:
-      - 5103:1433
-
-  oracle:
-    image: quillbuilduser/oracle-18-xe-micro-sq
-    ports:
-      - 5104:1521
-    environment:
-      - OPATCH_JRE_MEMORY_OPTIONS=-Xms128m -Xmx256m -XX:PermSize=16m -XX:MaxPermSize=32m -Xss1m
-      - ORACLE_ALLOW_REMOTE=true
-    shm_size: '1gb' # more like smh-size amirite 🥁
-
-  cockroachdb:
-    image: cockroachdb/cockroach:latest-v23.2
-    command: start-single-node --cluster-name=example-single-node --insecure
-    ports:
-      - 5113:26257
-
-  redis:
-    image: redis:6-alpine
-    ports:
-      - 5105:6379
-
-  minio:
-    image: minio/minio
-    command: server /data/minio/ --console-address :9001
-    ports:
-      - 5106:9000
-      - 5112:9001
-
-  azure:
-    image: mcr.microsoft.com/azure-storage/azurite
-    ports:
-      - 5107:10000
-
-  keycloak:
-    image: quay.io/keycloak/keycloak
-    environment:
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: secret
-    ports:
-      - 5110:8080
-    command:
-      - start-dev
-
-  maildev:
-    image: maildev/maildev
-    ports:
-      - 1025:1025
-      - 1080:1080
+      # Environment variables can also be defined in a file (for example `.env`):
+      # 直接用.env文件覆盖掉环境变量
+    env_file:
+      - .env

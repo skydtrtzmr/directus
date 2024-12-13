@@ -50,3 +50,4 @@ TODO
 /packages/extensions-sdk/temp-extension-*/
 /docs/packages/
 /api/extensions/.registry
+/data/database

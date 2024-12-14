@@ -17,6 +17,9 @@ WORKDIR /directus
 
 COPY package.json .
 RUN corepack enable && corepack prepare
+# Corepack 是 Node.js 的一个工具，用来管理包管理器（如 npm、yarn 和 pnpm）的版本。它实际上是 Node.js 的一部分，可以确保使用正确的包管理器版本。
+# corepack enable：启用 Corepack 工具。通过这个命令，Node.js 将会激活 Corepack，允许使用指定的包管理器（如 pnpm、yarn 等）。它是 Node.js 16.9 版本引入的功能。
+# corepack prepare：准备并确保 Corepack 所管理的包管理器（如 pnpm）是正确的版本。这个命令会下载和缓存包管理器，确保其在执行时已准备好。
 
 # Deploy as 'node' user to match pnpm setups in production image
 # (see https://github.com/directus/directus/issues/23822)

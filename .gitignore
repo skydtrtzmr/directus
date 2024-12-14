@@ -38,6 +38,9 @@ debug
 # Temporary files
 TODO
 
+# Docker Volumes
+/docker_volumes/
+
 # Directus
 *.db
 /schema.yaml

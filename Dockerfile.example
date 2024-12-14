@@ -23,9 +23,7 @@ RUN corepack enable && corepack prepare
 RUN chown node:node .
 USER node
 
-# NOTE: 注意这里原先设置了内存限制为8192，我们把它改大一点。
-# ENV NODE_OPTIONS=--max-old-space-size=8192
-ENV NODE_OPTIONS=--max-old-space-size=32768
+ENV NODE_OPTIONS=--max-old-space-size=8192
 
 COPY pnpm-lock.yaml .
 RUN pnpm fetch

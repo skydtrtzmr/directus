@@ -54,3 +54,4 @@ TODO
 /docs/packages/
 /api/extensions/.registry
 /data/database
+*.zip

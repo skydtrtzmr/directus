@@ -18,6 +18,8 @@ services:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "pg19990314"
       POSTGRES_DB: "directus"
+      # 注意，要在postgresql.conf文件中（已经在docker_volumes/database/下）设置max_connections=1000
+      # ，否则高并发时可能会出现连接数不足的情况。
     healthcheck:
       test: [ "CMD", "pg_isready", "--host=localhost", "--username=postgres" ]
       interval: 10s

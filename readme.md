@@ -55,6 +55,16 @@ pnpm --filter app dev
 
 注意：如果需要前端部分（app）热更新的话，不要从`pnpm --filter api dev`（或者api目录下`pnpm dev`）启动，而是从`pnpm --filter app dev`（或者app目录下`pnpm dev`）启动。
 
+#### 打包
+
+（这个是我从dockerfile中复制过来的，原仓库中没有这个命令。）
+
+```
+pnpm --filter directus deploy --prod dist
+```
+
+### 其他
+
 #### 关于系统collections的显示
 
 在数据库“directus_presets”中设置。

@@ -65,7 +65,7 @@ export default defineHook(({ filter, action }: RegisterFunctions, { services, ge
 			// 获取所需的角色
 			const foundRole = roles.find((item) => item.name == '学生');
 
-			// 创建角色。返回值就是一个id。
+			// 创建用户（并赋予角色）。返回值就是一个id。
 			studentDirectusUserId = await studentsUsersService.createOne({
 				role: foundRole!.id,
 				email: meta.payload.email,

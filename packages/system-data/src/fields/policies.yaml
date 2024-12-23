@@ -71,6 +71,7 @@ fields:
   - field: users
     interface: list-m2m
     options:
+      # 注释：我把系统中原有的姓名模板都调换了顺序，原先是名字在前，现在是名字在后。
       # template: '{{ user.first_name }} {{ user.last_name }}'
       template: '{{ user.last_name }}{{ user.first_name }}' # DONE
       junctionFilter:

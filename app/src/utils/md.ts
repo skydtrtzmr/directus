@@ -1,4 +1,4 @@
-import { marked } from 'marked';
+import { marked, Tokens } from 'marked';
 import dompurify from 'dompurify';
 import markedKatex from 'marked-katex-extension';
 
@@ -11,12 +11,21 @@ type Options = {
 const renderer = new marked.Renderer();
 
 // DONE 新增空格替换，避免多个空格被渲染成一个空格
-renderer.text = function (text) {
-	return text.replace(/ /g, ' &nbsp;');
+// 注释：Marked库在14.0.0版本后，text方法的参数类型从string变为Tokens.Text | Tokens.Escape | Tokens.Tag，所以需要使用token.text来获取文本内容。
+renderer.text = function (token: Tokens.Text | Tokens.Escape | Tokens.Tag) {
+    return token.text.replace(/ /g, ' &nbsp;');
 };
 
+// 添加类型定义
+interface ImageProps {
+	href: string;
+	title: string | null;
+	text: string;
+  }
+
+
 // DONE 重写 image 函数来处理自定义的图片标记
-renderer.image = (href, title, text) => {
+renderer.image = ({ href, title, text }: ImageProps) => {
 	let width = '';
 	let height = '';
 	let altText = text;

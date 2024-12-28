@@ -274,7 +274,8 @@ function getSystemFields() {
 				special: ['user-created'],
 				interface: 'select-dropdown-m2o',
 				options: {
-					template: '{{avatar}} {{first_name}} {{last_name}}',
+					// template: '{{avatar}} {{first_name}} {{last_name}}',
+					template: '{{avatar}} {{last_name}} {{first_name}}',
 				},
 				display: 'user',
 				readonly: true,

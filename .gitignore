@@ -15,7 +15,6 @@ coverage/
 
 # Dotenv configs
 .env
-.env.*
 
 # Logs
 npm-debug.log
@@ -39,6 +38,9 @@ debug
 # Temporary files
 TODO
 
+# Docker Volumes
+/docker_volumes/
+
 # Directus
 *.db
 /schema.yaml
@@ -51,3 +53,5 @@ TODO
 /packages/extensions-sdk/temp-extension-*/
 /docs/packages/
 /api/extensions/.registry
+/data/database
+*.zip

@@ -7,7 +7,7 @@
                 "icon": "lab_profile",
                 "note": "学生提交的试卷有两个来源，1是试卷原型，2是组卷策略。submitted papers的结构应当与papers表一致，也就是paper → paper_chapter → question。",
                 "display_template": null,
-                "hidden": false,
+                "hidden": true,
                 "singleton": false,
                 "translations": [
                     {
@@ -676,7 +676,7 @@
                 "numeric_precision": null,
                 "numeric_scale": null,
                 "is_generated": false,
-                "is_nullable": true,
+                "is_nullable": false,
                 "is_unique": false,
                 "is_indexed": false,
                 "is_primary_key": false,
@@ -698,10 +698,15 @@
                 "hidden": true,
                 "sort": 12,
                 "width": "full",
-                "translations": null,
+                "translations": [
+                    {
+                        "language": "zh-CN",
+                        "translation": "所属交卷详情"
+                    }
+                ],
                 "note": null,
                 "conditions": null,
-                "required": false,
+                "required": true,
                 "group": null,
                 "validation": null,
                 "validation_message": null
@@ -720,7 +725,7 @@
                 ],
                 "interface": "list-o2m",
                 "options": {
-                    "template": "{{source_paper_prototype_chapter}}"
+                    "template": "{{sort_in_paper}}{{title}}{{source_paper_prototype_chapter}}"
                 },
                 "display": "related-values",
                 "display_options": {
@@ -783,7 +788,7 @@
                 "translations": [
                     {
                         "language": "zh-CN",
-                        "translation": "试卷总分"
+                        "translation": "总分"
                     }
                 ],
                 "note": null,
@@ -824,8 +829,10 @@
                 "special": null,
                 "interface": "input",
                 "options": null,
-                "display": null,
-                "display_options": null,
+                "display": "numberflow",
+                "display_options": {
+                    "currency": false
+                },
                 "readonly": false,
                 "hidden": false,
                 "sort": 15,
@@ -833,7 +840,7 @@
                 "translations": [
                     {
                         "language": "zh-CN",
-                        "translation": "学生试卷总得分"
+                        "translation": "得分"
                     }
                 ],
                 "note": null,
@@ -846,32 +853,6 @@
         }
     ],
     "relations": [
-        {
-            "collection": "submitted_papers",
-            "field": "source_paper_prototype",
-            "related_collection": "paper_prototypes",
-            "schema": {
-                "constraint_name": "submitted_papers_source_paper_prototype_foreign",
-                "table": "submitted_papers",
-                "column": "source_paper_prototype",
-                "foreign_key_schema": "public",
-                "foreign_key_table": "paper_prototypes",
-                "foreign_key_column": "id",
-                "on_update": "NO ACTION",
-                "on_delete": "SET NULL"
-            },
-            "meta": {
-                "many_collection": "submitted_papers",
-                "many_field": "source_paper_prototype",
-                "one_collection": "paper_prototypes",
-                "one_field": null,
-                "one_collection_field": null,
-                "one_allowed_collections": null,
-                "junction_field": null,
-                "sort_field": null,
-                "one_deselect_action": "nullify"
-            }
-        },
         {
             "collection": "submitted_papers",
             "field": "source_paper_gen_strategies",
@@ -900,48 +881,22 @@
         },
         {
             "collection": "submitted_papers",
-            "field": "user_updated",
-            "related_collection": "directus_users",
+            "field": "source_paper_prototype",
+            "related_collection": "paper_prototypes",
             "schema": {
-                "constraint_name": "submitted_papers_user_updated_foreign",
+                "constraint_name": "submitted_papers_source_paper_prototype_foreign",
                 "table": "submitted_papers",
-                "column": "user_updated",
+                "column": "source_paper_prototype",
                 "foreign_key_schema": "public",
-                "foreign_key_table": "directus_users",
+                "foreign_key_table": "paper_prototypes",
                 "foreign_key_column": "id",
                 "on_update": "NO ACTION",
-                "on_delete": "NO ACTION"
+                "on_delete": "SET NULL"
             },
             "meta": {
                 "many_collection": "submitted_papers",
-                "many_field": "user_updated",
-                "one_collection": "directus_users",
-                "one_field": null,
-                "one_collection_field": null,
-                "one_allowed_collections": null,
-                "junction_field": null,
-                "sort_field": null,
-                "one_deselect_action": "nullify"
-            }
-        },
-        {
-            "collection": "submitted_papers",
-            "field": "user_created",
-            "related_collection": "directus_users",
-            "schema": {
-                "constraint_name": "submitted_papers_user_created_foreign",
-                "table": "submitted_papers",
-                "column": "user_created",
-                "foreign_key_schema": "public",
-                "foreign_key_table": "directus_users",
-                "foreign_key_column": "id",
-                "on_update": "NO ACTION",
-                "on_delete": "NO ACTION"
-            },
-            "meta": {
-                "many_collection": "submitted_papers",
-                "many_field": "user_created",
-                "one_collection": "directus_users",
+                "many_field": "source_paper_prototype",
+                "one_collection": "paper_prototypes",
                 "one_field": null,
                 "one_collection_field": null,
                 "one_allowed_collections": null,
@@ -974,6 +929,58 @@
                 "junction_field": null,
                 "sort_field": null,
                 "one_deselect_action": "delete"
+            }
+        },
+        {
+            "collection": "submitted_papers",
+            "field": "user_created",
+            "related_collection": "directus_users",
+            "schema": {
+                "constraint_name": "submitted_papers_user_created_foreign",
+                "table": "submitted_papers",
+                "column": "user_created",
+                "foreign_key_schema": "public",
+                "foreign_key_table": "directus_users",
+                "foreign_key_column": "id",
+                "on_update": "NO ACTION",
+                "on_delete": "SET NULL"
+            },
+            "meta": {
+                "many_collection": "submitted_papers",
+                "many_field": "user_created",
+                "one_collection": "directus_users",
+                "one_field": null,
+                "one_collection_field": null,
+                "one_allowed_collections": null,
+                "junction_field": null,
+                "sort_field": null,
+                "one_deselect_action": "nullify"
+            }
+        },
+        {
+            "collection": "submitted_papers",
+            "field": "user_updated",
+            "related_collection": "directus_users",
+            "schema": {
+                "constraint_name": "submitted_papers_user_updated_foreign",
+                "table": "submitted_papers",
+                "column": "user_updated",
+                "foreign_key_schema": "public",
+                "foreign_key_table": "directus_users",
+                "foreign_key_column": "id",
+                "on_update": "NO ACTION",
+                "on_delete": "SET NULL"
+            },
+            "meta": {
+                "many_collection": "submitted_papers",
+                "many_field": "user_updated",
+                "one_collection": "directus_users",
+                "one_field": null,
+                "one_collection_field": null,
+                "one_allowed_collections": null,
+                "junction_field": null,
+                "sort_field": null,
+                "one_deselect_action": "nullify"
             }
         }
     ]

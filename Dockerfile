@@ -31,6 +31,10 @@ USER node
 ENV NODE_OPTIONS=--max-old-space-size=32768
 
 COPY pnpm-lock.yaml .
+
+#这里是我自己新增的，不确定。如果在中国环境下构建请把下面注释打开
+RUN npm config set registry https://registry.npmmirror.com
+
 RUN pnpm fetch
 
 COPY --chown=node:node . .

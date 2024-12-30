@@ -12138,12 +12138,12 @@
         },
         {
             "collection": "submitted_exams",
-            "field": "triggers-9cuptr",
+            "field": "triggers_calculate_score",
             "type": "alias",
             "schema": null,
             "meta": {
                 "collection": "submitted_exams",
-                "field": "triggers-9cuptr",
+                "field": "triggers_calculate_score",
                 "special": [
                     "alias",
                     "no-data"
@@ -12154,15 +12154,8 @@
                         {
                             "trigger": {
                                 "flowId": "0fce553e-9e3e-4e0d-8b34-94eeccf55ffc",
-                                "text": "算分",
-                                "icon": "bolt"
-                            }
-                        },
-                        {
-                            "trigger": {
-                                "flowId": "0fce553e-9e3e-4e0d-8b34-94eeccf55ffc",
-                                "text": "算分吗？",
-                                "icon": "azm"
+                                "text": "【考试算分trigger-01】手动触发",
+                                "icon": "calculate"
                             }
                         }
                     ]
@@ -12176,7 +12169,7 @@
                 "translations": [
                     {
                         "language": "zh-CN",
-                        "translation": "算分按钮"
+                        "translation": "触发算分"
                     }
                 ],
                 "note": null,

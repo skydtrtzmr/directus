@@ -128,6 +128,7 @@
 		"mapbox-gl": "1.13.3",
 		"maplibre-gl": "1.15.3",
 		"marked": "14.1.2",
+		"marked-katex-extension": "5.1.4",
 		"micromustache": "8.0.3",
 		"mime": "4.0.4",
 		"mitt": "3.0.1",

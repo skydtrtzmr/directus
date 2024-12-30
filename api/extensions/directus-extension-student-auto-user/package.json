@@ -1,5 +1,5 @@
 {
-	"name": "directus-extension-question-cascade-delete",
+	"name": "directus-extension-student-auto-user",
 	"description": "Please enter a description for your extension",
 	"icon": "extension",
 	"version": "1.0.0",
@@ -15,7 +15,7 @@
 	"directus:extension": {
 		"type": "hook",
 		"path": "dist/index.js",
-		"source": "src/index.js",
+		"source": "src/index.ts",
 		"host": "^10.10.0"
 	},
 	"scripts": {
@@ -24,6 +24,8 @@
 		"link": "directus-extension link"
 	},
 	"devDependencies": {
-		"@directus/extensions-sdk": "12.1.2"
+		"@directus/extensions-sdk": "12.1.4",
+		"@types/node": "^22.10.1",
+		"typescript": "^5.7.2"
 	}
 }

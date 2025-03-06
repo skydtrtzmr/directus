@@ -14,18 +14,22 @@ export default defineHook(({ filter, action }: RegisterFunctions, { services, ge
 
 	async function handler(meta: Record<string, any>, context: EventContext) {
 		log('Creating Course Item!');
-		const sourceCollection = 'courses';
-		const { ItemsService, PresetsService } = services;
-
-		const courseItemsService = new ItemsService(sourceCollection, {
-			...context, // 解构出 context 对象，里面包含accountability等。
-			schema: await getSchema(),
-		});
+		const { PresetsService } = services;
 
 		const presetService = new PresetsService({
 			...context,
 			schema: await getSchema(),
 		});
 
+		const preset = await presetService.createOne({
+			bookmark: '这里是课程名称',
+			collection: 'paper_prototypes',
+			layout: 'tabular',
+			layout_query: {"tabular":{"page":1}},
+			icon: 'bookmark'
+		});
+
+		log('preset', preset);
+		// 直接打印的话返回的是id。
 	}
 });

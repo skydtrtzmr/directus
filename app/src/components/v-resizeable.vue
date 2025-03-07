@@ -76,7 +76,8 @@ watch(
 
 		const finalWidth = width > maxWidth ? maxWidth : width;
 
-		target.style.width = `${finalWidth}px`; // 这里是左侧边栏的宽度
+		target.style.width = `${finalWidth}px`;
+		// 这里是左侧边栏的宽度
 	},
 	{ immediate: true },
 );

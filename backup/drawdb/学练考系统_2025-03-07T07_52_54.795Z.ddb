@@ -1,0 +1,901 @@
+{
+  "author": "Unnamed",
+  "title": "学练考系统",
+  "date": "2025-03-07T07:52:58.276Z",
+  "tables": [
+    {
+      "id": 0,
+      "name": "directus_users",
+      "x": -550.7130935058594,
+      "y": -381.8949182701111,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "role",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "email",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "size": 255
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740108319088
+    },
+    {
+      "id": 1,
+      "name": "tests",
+      "x": 395.8675079193107,
+      "y": 124.19225481033351,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": 255,
+          "isArray": false
+        },
+        {
+          "name": "paper_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [
+        {
+          "id": 0,
+          "name": "exams_index_0",
+          "unique": false,
+          "fields": [
+            "id"
+          ]
+        }
+      ],
+      "color": "#175e7a",
+      "key": 1740109463212
+    },
+    {
+      "id": 2,
+      "name": "tests_students",
+      "x": 396.8465068206781,
+      "y": 317.64089471817016,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "test_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "student_id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "处理多对多关系",
+      "indices": [],
+      "color": "#32c9b0",
+      "key": 1740113036365
+    },
+    {
+      "id": 3,
+      "name": "students",
+      "x": -233.214715576172,
+      "y": 64.90596642303461,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "email",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": 255
+        },
+        {
+          "name": "directus_user",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "每个学生都是一个directus用户",
+          "id": 2,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740113166556
+    },
+    {
+      "id": 4,
+      "name": "papers",
+      "x": 682.4964733886718,
+      "y": -334.7363021163941,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740113406923
+    },
+    {
+      "id": 5,
+      "name": "directus_roles",
+      "x": -549.0917889783091,
+      "y": -149.2722751847104,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "parent",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740727832751
+    },
+    {
+      "id": 6,
+      "name": "institutions",
+      "x": -229.73463318607253,
+      "y": -374.99324752434075,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "组织机构",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740727991277
+    },
+    {
+      "id": 7,
+      "name": "teachers",
+      "x": -232.50633608219073,
+      "y": -78.43844826515476,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [
+        {
+          "id": 0,
+          "name": "teachers_index_0",
+          "unique": false,
+          "fields": [
+            "id"
+          ]
+        }
+      ],
+      "color": "#175e7a",
+      "key": 1740728093925
+    },
+    {
+      "id": 8,
+      "name": "classes",
+      "x": -231.94472599002756,
+      "y": -246.5401374321774,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "institution",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740728300563
+    },
+    {
+      "id": 9,
+      "name": "subjects",
+      "x": 89.74467747715082,
+      "y": -368.599566425784,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "学科",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740732223164
+    },
+    {
+      "id": 10,
+      "name": "courses",
+      "x": 88.97297458103284,
+      "y": -240.4889722180204,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740732316821
+    },
+    {
+      "id": 11,
+      "name": "textbooks",
+      "x": 88.97297458103296,
+      "y": -106.97617511413844,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740732350003
+    },
+    {
+      "id": 12,
+      "name": "questions",
+      "x": 393.8139890616236,
+      "y": -367.82779287384324,
+      "fields": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": 0
+        },
+        {
+          "name": "course",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "通过此字段，在paper_parts中的questions字段接口设置筛选项“course = {{course}}”，即可实现组卷时每次能看到的题目都是本课程的。",
+          "id": 1,
+          "size": "",
+          "values": [],
+          "isArray": false
+        },
+        {
+          "name": "status",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "published|draft|archived",
+          "id": 2,
+          "size": 255,
+          "isArray": false
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740732402021
+    },
+    {
+      "id": 13,
+      "name": "textbook_chapters",
+      "x": 86.65786589267825,
+      "y": 29.623504230038776,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740732492600
+    },
+    {
+      "id": 14,
+      "name": "knowledge_points",
+      "x": 88.2012716849143,
+      "y": 166.22325423003875,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740732581304
+    },
+    {
+      "id": 15,
+      "name": "question_groups",
+      "x": 393.0427101004416,
+      "y": -147.10730464981359,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "",
+          "type": "",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1
+        }
+      ],
+      "comment": "题组",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740735414275
+    },
+    {
+      "id": 16,
+      "name": "paper_parts",
+      "x": 683.2208043082054,
+      "y": -194.95578109787272,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740746223007
+    },
+    {
+      "id": 17,
+      "name": "paper_strategies",
+      "x": 683.2209456198511,
+      "y": 0.2969217982456769,
+      "fields": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": 0
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740800269087
+    },
+    {
+      "id": 18,
+      "name": "paper_prototypes",
+      "x": 680.9056956198511,
+      "y": 131.49446890212747,
+      "fields": [
+        {
+          "name": "id",
+          "type": "INTEGER",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": true,
+          "comment": "",
+          "id": 0
+        }
+      ],
+      "comment": "",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740801429967
+    },
+    {
+      "id": 19,
+      "name": "directus_presets",
+      "x": -550.035601484031,
+      "y": 87.50459525443755,
+      "fields": [
+        {
+          "name": "id",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": true,
+          "unique": true,
+          "notNull": true,
+          "increment": false,
+          "comment": "",
+          "id": 0,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "bookmark",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 1,
+          "size": 255
+        },
+        {
+          "name": "user",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 2,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "role",
+          "type": "UUID",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 3,
+          "size": "",
+          "values": []
+        },
+        {
+          "name": "collection",
+          "type": "VARCHAR",
+          "default": "",
+          "check": "",
+          "primary": false,
+          "unique": false,
+          "notNull": false,
+          "increment": false,
+          "comment": "",
+          "id": 4,
+          "size": 255
+        }
+      ],
+      "comment": "用来做课程分类",
+      "indices": [],
+      "color": "#175e7a",
+      "key": 1740908102373
+    }
+  ],
+  "relationships": [
+    {
+      "startTableId": 2,
+      "startFieldId": 1,
+      "endTableId": 1,
+      "endFieldId": 0,
+      "cardinality": "one_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "fk_exams_students_exams_id_exams",
+      "id": 0
+    },
+    {
+      "startTableId": 2,
+      "startFieldId": 2,
+      "endTableId": 3,
+      "endFieldId": 0,
+      "cardinality": "one_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "fk_exams_students_students_id_students",
+      "id": 1
+    },
+    {
+      "startTableId": 3,
+      "startFieldId": 2,
+      "endTableId": 0,
+      "endFieldId": 0,
+      "cardinality": "one_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "fk_students_directus_users_id_directus_users",
+      "id": 2
+    },
+    {
+      "startTableId": 1,
+      "startFieldId": 2,
+      "endTableId": 4,
+      "endFieldId": 0,
+      "cardinality": "one_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "fk_exams_paper_papers",
+      "id": 3
+    },
+    {
+      "startTableId": 0,
+      "startFieldId": 1,
+      "endTableId": 5,
+      "endFieldId": 0,
+      "cardinality": "one_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "fk_directus_users_role_directus_roles",
+      "id": 4
+    },
+    {
+      "startTableId": 5,
+      "startFieldId": 1,
+      "endTableId": 5,
+      "endFieldId": 0,
+      "cardinality": "many_to_one",
+      "updateConstraint": "No action",
+      "deleteConstraint": "No action",
+      "name": "fk_directus_roles_parent_directus_roles",
+      "id": 5
+    }
+  ],
+  "notes": [
+    {
+      "id": 0,
+      "x": -580.1686235654063,
+      "y": -531.4135487366514,
+      "title": "directusu",
+      "content": "directus系统内置数据库，请勿改动！",
+      "color": "#fcf7ac",
+      "height": 90
+    }
+  ],
+  "subjectAreas": [
+    {
+      "id": 0,
+      "name": "directus system",
+      "x": -590.5493676278297,
+      "y": -430.72239144943524,
+      "width": 290.0501166210175,
+      "height": 810.3373763523105,
+      "color": "#89e667"
+    },
+    {
+      "id": 1,
+      "name": "organizational management",
+      "x": -264.00006103515614,
+      "y": -430.7223914494353,
+      "width": 292.396901880532,
+      "height": 761.6448107303622,
+      "color": "#ff9159"
+    },
+    {
+      "id": 2,
+      "name": "knowledge management",
+      "x": 66.14806878879611,
+      "y": -429.95065322540563,
+      "width": 272.8781941604617,
+      "height": 774.8370117759706,
+      "color": "#175e7a"
+    },
+    {
+      "id": 3,
+      "name": "practice management",
+      "x": 365.5868803732693,
+      "y": -431.494112009509,
+      "width": 590.8392883682251,
+      "height": 948.4807087841036,
+      "color": "#ffe159"
+    },
+    {
+      "id": 4,
+      "name": "paper",
+      "x": 660.3954745810335,
+      "y": -384.41739144943523,
+      "width": 278.2805383682247,
+      "height": 717.7275353279115,
+      "color": "#ff9159"
+    }
+  ],
+  "database": "postgresql",
+  "types": [],
+  "enums": []
+}

@@ -63,6 +63,14 @@ pnpm --filter app dev
 pnpm --filter directus deploy --prod dist
 ```
 
+### 部署
+
+先确保根目录有.env文件（比如从.env.example复制过来），然后执行：
+
+```bash
+docker compose up -d
+```
+
 ### 其他
 
 #### 关于系统collections的显示

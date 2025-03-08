@@ -34,6 +34,9 @@ pnpm --recursive dev
 pnpm --filter api dev
 ```
 
+这里默认是没有加载扩展的（参见api/package.json）。
+
+
 ```bash
 pnpm --filter app dev
 ```

@@ -415,7 +415,7 @@ function edit(type: Alteration, options?: Record<string, any>) {
 </template>
 
 <style lang="scss" scoped>
-@import '@/styles/mixins/form-grid';
+@use '@/styles/mixins';
 
 .interface-input-rich-text-md {
 	--v-button-background-color: transparent;
@@ -423,7 +423,7 @@ function edit(type: Alteration, options?: Record<string, any>) {
 	--v-button-background-color-hover: var(--theme--form--field--input--border-color);
 	--v-button-color-hover: var(--theme--form--field--input--foreground);
 
-	min-height: 100px; // DONE min-height: 300px;
+	min-height: 300px;
 	overflow: hidden;
 	font-family: var(--theme--fonts--sans--font-family);
 	border: var(--theme--border-width) solid var(--theme--form--field--input--border-color);
@@ -458,11 +458,11 @@ textarea {
 
 .preview-box {
 	display: none;
-	padding: 20px;
+	padding: 20px 24px;
 	font-family: v-bind(previewFamily), serif;
 
 	:deep() {
-		@import '@/styles/markdown';
+		@include mixins.markdown;
 	}
 }
 
@@ -508,13 +508,10 @@ textarea {
 	margin-bottom: 20px;
 }
 
-.interface-input-rich-text-md :deep(.CodeMirror .CodeMirror-scroll) {
-	min-height: 100px; // DONE min-height: 260px; 在这里修改md编辑器初始高度。
-	// 高度设为100px的话，浏览器显示比例大于100%时，编辑器的高度够显示4行正文。
-}
-
 .interface-input-rich-text-md.preview :deep(.CodeMirror) {
-	display: none;
+	visibility: hidden;
+	position: absolute;
+	pointer-events: none;
 }
 
 .toolbar {
@@ -549,7 +546,7 @@ textarea {
 	--theme--form--column-gap: 12px;
 
 	padding: 12px;
-	@include form-grid;
+	@include mixins.form-grid;
 
 	.v-input {
 		min-width: 100px;

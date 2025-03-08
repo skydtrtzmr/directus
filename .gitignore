@@ -45,13 +45,10 @@ TODO
 *.db
 /schema.yaml
 /schema.json
-# /api/uploads/
-# /api/extensions/
+/api/uploads/
+/api/extensions/
 /tests/blackbox/uploads/
 /tests/blackbox/server-log-*
 /tests/blackbox/sequencer-data.json
 /packages/extensions-sdk/temp-extension-*/
 /docs/packages/
-/api/extensions/.registry
-/data/database
-*.zip

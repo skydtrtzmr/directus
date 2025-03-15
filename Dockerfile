@@ -87,3 +87,6 @@ CMD : \
 # 运行以下命令进行构建镜像：
 # docker build -t skydtrtzmr/my-directus ./
 # 此命令将会在当前目录下生成一个名为 my-directus 的镜像。
+
+# 如果要在构建同时指定版本的话：
+# docker build -t skydtrtzmr/my-directus:v1.0.0 ./

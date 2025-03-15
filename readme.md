@@ -30,18 +30,35 @@ pnpm build
 pnpm --recursive dev
 ```
 
+#### 启动api
+
 ```bash
 pnpm --filter api dev
 ```
 
 这里默认是没有加载扩展的（参见api/package.json）。
 
+加载插件的话：
+
+```bash
+pnpm --filter api dev:ext
+```
+
+#### 启动app
 
 ```bash
 pnpm --filter app dev
 ```
 
 注意：如果需要前端部分（app）热更新的话，不要从`pnpm --filter api dev`（或者api目录下`pnpm dev`）启动，而是从`pnpm --filter app dev`（或者app目录下`pnpm dev`）启动。
+
+### 部署
+
+```bash
+docker build -t skydtrtzmr/my-directus:v1.0.0 ./
+```
+
+### 其他
 
 #### 关于系统collections的显示
 

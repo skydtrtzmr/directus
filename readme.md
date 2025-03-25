@@ -30,19 +30,21 @@ pnpm build
 pnpm --recursive dev
 ```
 
+[[2025-03-16]]这个命令感觉新版本不能这样用了啊，会启动一些额外的东西，其实我只需要app dev、api dev。
+
 #### 启动api
 
 ```bash
 pnpm --filter api dev
 ```
 
-这里默认是没有加载扩展的（参见api/package.json）。
-
-加载插件的话：
+监控插件变化的话：
 
 ```bash
 pnpm --filter api dev:ext
 ```
+
+上面两个都是会加载插件的。只是如果光从api的话看不到插件界面、看不到ui类的插件。
 
 #### 启动app
 

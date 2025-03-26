@@ -276,6 +276,7 @@ function toggleManualSort() {
 	.cell {
 		position: relative;
 		height: 50px; /* +2px for bottom border */
+		// width: 120px; /* DONE 原先没设置width，我添加了width: 120px，并没有用…… 这里设的width会被覆盖 */
 		padding: 0 12px;
 		font-weight: 500;
 		font-size: 14px;

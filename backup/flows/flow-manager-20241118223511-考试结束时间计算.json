@@ -1,0 +1,111 @@
+{
+  "id": "f5a7c264-c50b-4c7f-bbb6-184c686d2d99",
+  "name": "考试结束时间计算",
+  "icon": "bolt",
+  "color": null,
+  "description": null,
+  "trigger": "event",
+  "options": {
+    "type": "action",
+    "scope": [
+      "items.update"
+    ],
+    "collections": [
+      "submitted_exams"
+    ]
+  },
+  "operation": "14a8a686-28d7-43a5-bd69-71a0245e4aca",
+  "operations": [
+    {
+      "id": "14a8a686-28d7-43a5-bd69-71a0245e4aca",
+      "name": "读取submit_exam数据",
+      "key": "item_read_submit_exams",
+      "type": "item-read",
+      "position_x": 18,
+      "position_y": 1,
+      "options": {
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{$trigger.keys[0]}}"
+            }
+          }
+        },
+        "collection": "submitted_exams"
+      },
+      "resolve": "b6f819e3-76a8-4c08-9ba7-f9b1f2499871",
+      "reject": null
+    },
+    {
+      "id": "1a4e7602-ce89-4f47-849e-667e07778fde",
+      "name": "记录到控制台",
+      "key": "log_3y8v0",
+      "type": "log",
+      "position_x": 39,
+      "position_y": 19,
+      "options": {
+        "message": "{{$trigger}}"
+      },
+      "resolve": null,
+      "reject": null
+    },
+    {
+      "id": "864695aa-7f37-4388-8943-1c38107b57aa",
+      "name": "运行脚本，返回一个日期时间字符串",
+      "key": "expected_end_time",
+      "type": "exec",
+      "position_x": 4,
+      "position_y": 19,
+      "options": {
+        "code": "module.exports = async function(data) {\n    // 解析字符串为日期\n    const submit_exam = data.item_read_submit_exams[0];\n    const exam = data.item_read_exams[0];\n    const actual_start_time = submit_exam.actual_start_time;  // 导出的时间是字符串类型。\n    const duration = exam.duration; // 考试持续时间（分钟）\n    const extra_time = submit_exam.extra_time; // 延时（分钟）\n    \n    // 先根据实际开始作答时间和考试时长，计算应交卷时间\n    const expected_end_time = new Date(actual_start_time);\n    expected_end_time.setMinutes(expected_end_time.getMinutes() + duration + extra_time);\n    \n    // 注意：Date对象在directus中能正常运算，但不能打印。\n    const expected_end_time_str = expected_end_time.toISOString();\n    \n\t//return ;\n    return expected_end_time_str;\n}"
+      },
+      "resolve": "fb8b57d5-1497-4139-b158-318cbc21281b",
+      "reject": null
+    },
+    {
+      "id": "b6f819e3-76a8-4c08-9ba7-f9b1f2499871",
+      "name": "读取exam数据",
+      "key": "item_read_exams",
+      "type": "item-read",
+      "position_x": 36,
+      "position_y": 1,
+      "options": {
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{item_read_submit_exams[0].exam}}"
+            }
+          }
+        },
+        "collection": "exams"
+      },
+      "resolve": "864695aa-7f37-4388-8943-1c38107b57aa",
+      "reject": null
+    },
+    {
+      "id": "fb8b57d5-1497-4139-b158-318cbc21281b",
+      "name": "更新触发的submitted_exam",
+      "key": "item_update_submitted_exam",
+      "type": "item-update",
+      "position_x": 22,
+      "position_y": 19,
+      "options": {
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{$trigger.keys[0]}}"
+            }
+          }
+        },
+        "collection": "submitted_exams",
+        "payload": {
+          "expected_end_time": "{{expected_end_time}}"
+        }
+      },
+      "resolve": "1a4e7602-ce89-4f47-849e-667e07778fde",
+      "reject": null
+    }
+  ],
+  "flow_manager_category": null,
+  "accountability": "all"
+}

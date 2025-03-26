@@ -1,0 +1,269 @@
+{
+  "id": "51562888-8cd0-4e67-8813-c815871db59e",
+  "name": "【2】每次submitted_questions答案更新时，得分更新，层层向上汇总。",
+  "icon": "bolt",
+  "color": null,
+  "description": "注意这里一定是action类型，要等更新事件完成了再执行，而非阻止事件本身。",
+  "trigger": "event",
+  "options": {
+    "type": "action",
+    "scope": [
+      "items.update"
+    ],
+    "collections": [
+      "submitted_questions"
+    ]
+  },
+  "operation": "c520909d-826a-4ff7-a66e-8d191ba3246d",
+  "operations": [
+    {
+      "id": "088efa63-4cbe-4796-896d-b4b19adc4c43",
+      "name": "更新submitted_questions_score",
+      "key": "submitted_questions_score",
+      "type": "item-update",
+      "position_x": 21,
+      "position_y": 37,
+      "options": {
+        "payload": {
+          "score": "{{exec_compute_score.score}}"
+        },
+        "collection": "submitted_questions",
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{$trigger.keys[0]}}"
+            }
+          }
+        }
+      },
+      "resolve": "76aff3e1-cc59-4d20-a2f9-c8f46358626c",
+      "reject": null
+    },
+    {
+      "id": "1216da85-3251-4424-a1b3-527b0652906e",
+      "name": "查询当前submit_chapter信息",
+      "key": "submitted_paper_chapters",
+      "type": "item-read",
+      "position_x": 3,
+      "position_y": 73,
+      "options": {
+        "collection": "submitted_paper_chapters",
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{item_update_submitted_chapters[0]}}"
+            }
+          }
+        }
+      },
+      "resolve": "1e44fbee-0578-46ac-8d93-cc3e3534c806",
+      "reject": null
+    },
+    {
+      "id": "1e44fbee-0578-46ac-8d93-cc3e3534c806",
+      "name": "读取当前章节的试卷的所有章节数据",
+      "key": "item_read_paper_chapters",
+      "type": "item-read",
+      "position_x": 21,
+      "position_y": 73,
+      "options": {
+        "collection": "submitted_paper_chapters",
+        "query": {
+          "filter": {
+            "submitted_paper": {
+              "_eq": "{{submitted_paper_chapters[0].submitted_paper}}"
+            }
+          }
+        }
+      },
+      "resolve": "dad94675-3681-4d6c-8ded-3fea81f0b664",
+      "reject": null
+    },
+    {
+      "id": "354ff1cc-6697-4544-8aaa-e44d8026a84a",
+      "name": "得分总分更新到submitted_peper",
+      "key": "item_update_submitted_papers",
+      "type": "item-update",
+      "position_x": 39,
+      "position_y": 91,
+      "options": {
+        "collection": "submitted_papers",
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{submitted_paper_chapters[0].submitted_paper}}"
+            }
+          }
+        },
+        "payload": {
+          "score": "{{exec_sum_chapter_score}}"
+        }
+      },
+      "resolve": null,
+      "reject": null
+    },
+    {
+      "id": "35a7ce0e-5ff6-4298-8bc9-e6bf9dbe30cf",
+      "name": "得分总分更新到submitted_chapter",
+      "key": "item_update_submitted_chapters",
+      "type": "item-update",
+      "position_x": 39,
+      "position_y": 55,
+      "options": {
+        "collection": "submitted_paper_chapters",
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{submitted_questions[0].submitted_paper_chapter}}"
+            }
+          }
+        },
+        "payload": {
+          "score": "{{exec_sum_question_score}}"
+        }
+      },
+      "resolve": "1216da85-3251-4424-a1b3-527b0652906e",
+      "reject": null
+    },
+    {
+      "id": "6ed3d428-dd0e-45b5-802d-8aa2f3b64084",
+      "name": "打印submitted_questions[0]详情",
+      "key": "log_kphe8",
+      "type": "log",
+      "position_x": 37,
+      "position_y": 1,
+      "options": {
+        "message": "{{submitted_questions[0]}}"
+      },
+      "resolve": "aba69584-435c-40aa-ae30-c9f668deeced",
+      "reject": null
+    },
+    {
+      "id": "76aff3e1-cc59-4d20-a2f9-c8f46358626c",
+      "name": "查询当前submit_q 所属的submit chapter的所有submit_q",
+      "key": "submitted_chapter_quesions",
+      "type": "item-read",
+      "position_x": 3,
+      "position_y": 55,
+      "options": {
+        "collection": "submitted_questions",
+        "query": {
+          "filter": {
+            "submitted_paper_chapter": {
+              "_eq": "{{submitted_questions[0].submitted_paper_chapter}}"
+            }
+          }
+        }
+      },
+      "resolve": "9af127e7-8a21-4004-98bb-07b3138fa8c3",
+      "reject": null
+    },
+    {
+      "id": "938d3548-e125-4354-9dbc-d53457a9add4",
+      "name": "读取原题目（为了获得答案）",
+      "key": "item_read_questions",
+      "type": "item-read",
+      "position_x": 21,
+      "position_y": 19,
+      "options": {
+        "collection": "questions",
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{submitted_questions[0].question}}"
+            }
+          }
+        }
+      },
+      "resolve": "f6edda51-ac32-4e82-a625-8d6a4df7abb5",
+      "reject": null
+    },
+    {
+      "id": "9af127e7-8a21-4004-98bb-07b3138fa8c3",
+      "name": "运行脚本求和question的score到chapter",
+      "key": "exec_sum_question_score",
+      "type": "exec",
+      "position_x": 21,
+      "position_y": 55,
+      "options": {
+        "code": "module.exports = async function(data) {\n    const chapter_question_list = data.submitted_chapter_quesions;\n\tlet sum_question_score = chapter_question_list\n    \t.reduce((sum, item) => sum + Number(item.score), 0);\n\treturn sum_question_score;\n}"
+      },
+      "resolve": "35a7ce0e-5ff6-4298-8bc9-e6bf9dbe30cf",
+      "reject": null
+    },
+    {
+      "id": "aba69584-435c-40aa-ae30-c9f668deeced",
+      "name": "根据题型定义学生提交的答案（字符串）",
+      "key": "submitted_answer",
+      "type": "exec",
+      "position_x": 3,
+      "position_y": 19,
+      "options": {
+        "code": "module.exports = async function(data) {\n    const q = data.submitted_questions[0];\n\tconst q_type = q.question_type;\n\tlet submitted_answer;\n    if (q_type === \"q_mc_single\") {\n        submitted_answer = q.submitted_ans_q_mc_single;\n    } else if (q_type === \"q_mc_multi\") {\n        submitted_answer = JSON.stringify(q.submitted_ans_q_mc_multi);\n    } else if (q_type === \"q_mc_binary\") {\n        submitted_answer = q.submitted_ans_q_mc_binary;\n    } else if (q_type === \"q_mc_flexible\") {\n        submitted_answer = JSON.stringify(q.submitted_ans_q_mc_flexible);\n    }\n\t// 为避免类型混乱，先全都转化为字符串来存储。\n\treturn submitted_answer;\n}"
+      },
+      "resolve": "938d3548-e125-4354-9dbc-d53457a9add4",
+      "reject": null
+    },
+    {
+      "id": "c520909d-826a-4ff7-a66e-8d191ba3246d",
+      "name": "读取submitted_questions",
+      "key": "submitted_questions",
+      "type": "item-read",
+      "position_x": 19,
+      "position_y": 1,
+      "options": {
+        "query": {
+          "filter": {
+            "id": {
+              "_eq": "{{$trigger.keys[0]}}"
+            }
+          }
+        },
+        "collection": "submitted_questions"
+      },
+      "resolve": "6ed3d428-dd0e-45b5-802d-8aa2f3b64084",
+      "reject": null
+    },
+    {
+      "id": "dad94675-3681-4d6c-8ded-3fea81f0b664",
+      "name": "运行脚本求和chapter的score到paper",
+      "key": "exec_sum_chapter_score",
+      "type": "exec",
+      "position_x": 39,
+      "position_y": 73,
+      "options": {
+        "code": "module.exports = async function(data) {\n    const paper_chapter_list = data.item_read_paper_chapters;\n\tlet sum_chapter_score = paper_chapter_list\n    \t.reduce((sum, item) => sum + Number(item.score), 0);\n\treturn sum_chapter_score;\n}"
+      },
+      "resolve": "354ff1cc-6697-4544-8aaa-e44d8026a84a",
+      "reject": null
+    },
+    {
+      "id": "f695aee0-cae8-4fef-9916-420ee53c844c",
+      "name": "记录到控制台",
+      "key": "log_s2b46",
+      "type": "log",
+      "position_x": 3,
+      "position_y": 37,
+      "options": {
+        "message": "{{$last}}"
+      },
+      "resolve": "088efa63-4cbe-4796-896d-b4b19adc4c43",
+      "reject": null
+    },
+    {
+      "id": "f6edda51-ac32-4e82-a625-8d6a4df7abb5",
+      "name": "计算单题得分",
+      "key": "exec_compute_score",
+      "type": "exec",
+      "position_x": 39,
+      "position_y": 19,
+      "options": {
+        "code": "module.exports = async function(data) {\n    const q = data.submitted_questions[0];\n    // 注意submitted_question是个列表，我们每次只更新一个所以只管列表第一项。\n\tconst q_type = q.question_type;\n    const answer = data.item_read_questions[0].answer;\n    \n    const submitted_answer = data.submitted_answer;\n    \n    function arraysEqual(arr1, arr2) {\n        // 如果长度不同，直接返回 false\n        if (arr1.length !== arr2.length) {\n            return false;\n        }\n\n        // 排序后逐个比较元素\n        arr1.sort();\n        arr2.sort();\n\n        // 比较每个元素\n        for (let i = 0; i < arr1.length; i++) {\n            if (arr1[i] !== arr2[i]) {\n                return false;\n            }\n        }\n\n        // 如果所有元素都相同，返回 true\n        return true;\n    }\n    \n    let true_status = 0;\n    if ( [\"q_mc_single\", \"q_mc_binary\"].includes(q_type) ){\n        if (answer === submitted_answer) {\n            true_status = 1;\n        } else {\n            true_status = 0;\n        }\n    } else if ( [\"q_mc_multi\", \"q_mc_flexible\"].includes(q_type) ){\n        const answer_json = JSON.parse(answer);\n        const submitted_answer_json = JSON.parse(submitted_answer)\n        if ( submitted_answer_json.length === 0) {\n\t\t\t// 如果提交的答案是空列表，直接0分。\n            true_status = 0;\n        } else if (submitted_answer_json.every(element => answer_json.includes(element))) {\n            // 如果包含关系\n            if (arraysEqual(submitted_answer_json, answer_json)) {\n                // 如果完全相等\n                true_status = 1;\n            } else {\n                true_status = 0.5;\n            }\n        } else {\n            true_status = 0;\n        }\n    }\n    \n    const score = true_status * q.point_value\n    \n    return {\n        answer,\n        submitted_answer,\n        true_status,\n        score\n    };\n}"
+      },
+      "resolve": "f695aee0-cae8-4fef-9916-420ee53c844c",
+      "reject": null
+    }
+  ],
+  "flow_manager_category": null,
+  "accountability": "all"
+}

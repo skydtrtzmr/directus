@@ -19,15 +19,16 @@
 #'Int32Array', 'Uint32Array', 'Float32Array', 'Float64Array', 'Map', 'Set', 'WeakMap', 'WeakSet',
 #'SIMD', 'ArrayBuffer', 'DataView', 'JSON', 'Promise', 'Generator', 'GeneratorFunction', 'Reflect',
 #'Proxy', 'Intl'
+
 about: 关于
-identifier: 标识符（identifier）
+identifier: 标识符 # 注释：DONE 原文为“ identifier: 标识符（identifier）”
 avatar: 头像
 application: 应用程序
 default_provider: 默认
 method: 方法
 published: 已发布
 draft: 草稿
-archived: 已存档
+archived: 已归档 # 注释：DONE archive 存档都改成归档
 marketplace: 扩展集市
 extensions: 扩展
 modules: 模块
@@ -36,10 +37,10 @@ logs: 日志
 unknown: 未知
 reset_width: 重置宽度
 tile_size: 瓦块大小
-edit_field: 编辑
+edit_field: 编辑字段
 conditions: 条件
 location: 地理位置
-collection_names_are_case_sensitive: 集合名称是区分大小写
+collection_names_are_case_sensitive: 集合名称区分大小写 # DONE
 condition_rules: 条件规则
 input: 输入
 maps: 地图
@@ -85,7 +86,9 @@ extension_reload_required_copy: 启用或禁用应用扩展后需要重新加载
 extension_reload_now: 立即重新加载
 published_relative: 已发布 {relativeTime}
 compatible_with_your_project: 与您的项目兼容
-compatible_with_your_project_copy: 作者已将此扩展的兼容性版本定为 {hostVersion}，它与您的项目版本 ({currentVersion}) 不匹配
+compatible_with_your_project_copy: # DONE 原先说的是“不匹配”，现在改成“与您的项目兼容”
+  作者已将此扩展的兼容性版本定为 {hostVersion}，
+  它与您的项目版本 ({currentVersion}) 兼容
 last_updated_relative: 最近更新 {relativeTime}
 n_files: '{n} 个文件'
 verified: 已验证
@@ -100,12 +103,14 @@ beta: 测试版
 n_downloads: '{n} 次下载'
 downloads: 下载数
 compatibility_not_guaranteed: 兼容性没有保障
-compatibility_not_guaranteed_copy: 作者已将此扩展的兼容性版本定为 {hostVersion}，它与您的项目版本 ({currentVersion}) 不匹配
+compatibility_not_guaranteed_copy:
+  作者已将此扩展的兼容性版本定为 {hostVersion}，
+  它与您的项目版本 ({currentVersion}) 不匹配
 enable: 启用
 disable: 禁用
 custom: 自定义
 hook: 钩子
-fill_width: 全宽
+fill_width: 填充宽度
 field_name_translations: 字段名称翻译
 enter_password_to_enable_tfa: 输入您的密码以启用双因素认证(2FA)
 add_field: 添加字段
@@ -119,7 +124,7 @@ exclusive: 排他，分支或叶节点间互斥
 children: 子页面
 db_only_click_to_configure: '仅限数据库：点击配置'
 show_active_items: 显示活动项
-show_archived_items: 显示存档条目
+show_archived_items: 显示归档条目
 show_all_items: 显示所有条目
 edited: 已编辑的值
 required: 必填
@@ -143,10 +148,10 @@ email_already_invited: 电子邮件 "{email}" 已被邀请
 subject: 主題
 inbox: 收件箱
 emails: 邮箱
-connection_excellent: 优秀的连接状态
-connection_good: 好的连接状态
-connection_fair: 一般的连接状态
-connection_poor: 连接不良
+connection_excellent: 连接优秀 # DONE connection_excellent: 优秀的连接状态
+connection_good: 连接良好 # DONE connection_good: 好的连接状态
+connection_fair: 连接一般 # DONE connection_fair: 一般的连接状态
+connection_poor: 连接不良 # DONE connection_poor: 连接不良
 primary: 主要的
 rename_folder: 重命名文件夹
 delete_folder: 删除文件夹
@@ -156,7 +161,7 @@ keep: 保持
 version: 版本号
 version_key: 版本密钥
 version_name: 版本名称
-main_version: 主要
+main_version: 主版本
 switch_version: 切换版本
 switch_version_copy: 确定要切换到"{version}"版本？未保存的更改将会丢失。
 create_version: 创建新版本
@@ -191,22 +196,24 @@ logoutReason:
 public_label: 公开
 public_description: 设置哪些API无需身份验证。
 public_role_info: >-
-  公共角色控制未经身份验证的用户或没有角色的用户可以访问哪些API数据。具有公共角色的请求不能拥有应用程序或管理员访问权限。如果将应用程序或管理员访问权限分配给与公共角色相关的策略，这些权限将被忽略。
+  公共角色控制未认证用户或没有分配角色的用户可以访问哪些 API 数据。
+  带有公共角色的请求不能获得应用程序（APP）或管理员（ADMIN）的访问权限。
+  如果将应用程序或管理员访问权限分配给公共角色的策略，这些权限将被忽略。
 admin_description: 不受限制的 App/ API 访问权限的初始管理角色
 admin_policy_description: 具有不受限制的应用/API访问权限的初始管理策略。
 no_description: 没有描述。
 reached_maximum_number_of_extensions: 您已达到此项目的最大扩展数 ({n})。请联系您的系统管理员以获取更多信息。
 not_allowed: 不允许
-archive: 存档
+archive: 归档
 archive_confirm: 您确定要归档所选吗？
 archive_confirm_count: >-
-  没有选定条目 | 你确定要存档这个条目吗？| 你确定你想要存档这些 {count} 个条目吗？
+  没有选定条目 | 你确定要归档这个条目吗？| 你确定你想要归档这些 {count} 个条目吗？
 reset_system_permissions_to: '重置系统权限：'
 reset_system_permissions_copy: 此操作将覆盖您可能应用到系统模型中的自定义权限。确定吗？
 the_following_are_minimum_permissions: 当启用“应用访问”时，以下最低权限将自动应用。 您可以在需要时授予额外的权限，但是您不能将权限降低到这个级别以下。
 app_access_minimum: 最小权限
 recommended_defaults: 推荐设置
-unarchive: 取消存档
+unarchive: 取消归档
 unarchive_confirm: 您确定要取消归档此条目吗？
 nested_files_folders_will_be_moved: 文件和文件夹将被上移一级。
 validation_errors_notice: '以下字段含有无效值:'
@@ -240,7 +247,7 @@ validationError:
 all_access: 允许所有
 no_access: 禁止访问
 use_custom: 自定义
-nullable: 允许为空
+nullable: 允许为null
 allow_null_value: 允许NULL值
 allow_multiple: 允许多个
 allow_multiple_to_be_open: 允许打开多个
@@ -298,11 +305,11 @@ create_in_advanced_field_creation_mode: 在高级模式下创建字段
 continue_in_advanced_field_creation_mode: 在高级字段创建模式中继续
 validation: 验证
 sum: 求和
-sum_distinct: Sum Distinct
-avg: 平均值
-avg_distinct: Average Distinct
-count: Count
-count_distinct: Count Distinct
+sum_distinct: 求和（唯一值）
+avg: 求平均
+avg_distinct: 求平均（唯一值）
+count: 计数
+count_distinct: 计数（唯一值）
 min: 最小值
 max: 最大值
 exposure: 过期
@@ -320,12 +327,12 @@ disabled_editing_value: 禁用编辑
 key: 关键字
 alias: 别名
 bigInteger: Big Integer
-boolean: Boolean
-date: Date
+boolean: 布尔值
+date: 日期
 date_range: 时间段
 translation_key_placeholder: 请输入键...
-datetime: DateTime
-dateTime: DateTime
+datetime: 日期时间
+dateTime: 日期时间（不含时区）
 precision: 精度
 decimal: Decimal
 float: Float
@@ -413,9 +420,9 @@ soft_length: 软限制
 precision_scale: 精度和缩放
 readonly: 只读
 unique: 唯一
+updated_on: 更新时间
+updated_by: 更新用户
 index: 索引
-updated_on: 更新于
-updated_by: 更新，由
 primary_key: 主键
 foreign_key: 外键
 field_key: 字段键
@@ -439,7 +446,7 @@ clear_items: 清除条目
 reset_to_default: 重置为默认值
 undo_changes: 撤销更改
 notifications: 通知
-archive_all: 全部存档
+archive_all: 全部归档
 show_all_activity: 显示所有活动
 page_not_found: 找不到页面
 page_not_found_body: 您正在寻找的页面似乎不存在。
@@ -591,8 +598,8 @@ name: 名称
 primary_key_field: 主键字段
 type: 类型
 creating_new_collection: 新建模型
-created_by: 创建自
-created_on: 创建于
+created_by: 创建用户
+created_on: 创建时间
 creating_collection_info: 命名集合并设置唯一键字段...
 creating_collection_system: 启用并重命名这些可选字段。
 auto_increment_integer: 自动递增整数
@@ -664,7 +671,8 @@ active: 激活
 move_to: 移动到...
 copy: 复制
 copy_to: 复制到...
-no_other_dashboards_copy: 您还没有任何其他工作台。
+# no_other_dashboards_copy: 您还没有任何其他工作台。
+no_other_dashboards_copy: 您还没有任何其他仪表盘。 # DONE
 inactive: 非活跃
 users: 用户
 roles: 角色
@@ -684,7 +692,7 @@ field_width: 字段宽度
 add_filter: 添加过滤器
 upper_limit: 上限...
 lower_limit: 下限...
-user_directory: 用户列表
+user_directory: 用户名录 # 用户列表
 documentation: 文档
 sidebar: 侧边栏
 duration: 持续时间
@@ -728,7 +736,7 @@ errors:
   FORBIDDEN: 禁止
   GRAPHQL_VALIDATION: GraphQL 验证
   ILLEGAL_ASSET_TRANSFORMATION: 原图太大，无法预览
-  INTERNAL_SERVER_ERROR: 未知错误
+  INTERNAL_SERVER_ERROR: 意外错误
   INVALID_CONFIG: 无效配置
   INVALID_CREDENTIALS: 错误的用户名或密码
   INVALID_FOREIGN_KEY: 无效的外键
@@ -758,7 +766,7 @@ errors:
   VALUE_OUT_OF_RANGE: 数值超出范围
   VALUE_TOO_LONG: 数值太长
 security: 安全
-value_hashed: 哈希值
+value_hashed: 值已哈希化
 bookmark_name: 书签名称
 create_bookmark: 创建书签
 edit_bookmark: 编辑书签
@@ -838,8 +846,8 @@ operators:
   gte: 大于或等于
   in: 属于
   nin: 不属于
-  null: 为空
-  nnull: 不是空的
+  null: 为null
+  nnull: 不是null
   contains: 包含
   ncontains: 不包含
   icontains: 包含 (大小写不敏感)
@@ -866,8 +874,8 @@ custom_validation_message: 自定义验证消息
 loading: 正在载入...
 extension_readme_missing: 此扩展没有README 文件。
 drop_to_upload: 拖拽文件并上传
-item: 条目
-items: 条目
+item: 项 # DONE 条目
+items: 项 # DONE 条目
 upload_file: 上传文件
 upload_file_indeterminate: 正在上传文件...
 upload_file_success: 文件已上传
@@ -978,7 +986,7 @@ operation_key: 用于引用的标识...
 operation_key_unique_error: 操作的键值(keys)在同一流程中必须是唯一的
 operation_handle_resolve: '成功：点击添加或拖动布局'
 operation_handle_reject: '失败：点击添加或拖动布局'
-insights: 洞察分析
+insights: 统计分析
 dashboard: 控制面板
 panel: 面板
 panel_options: 选项
@@ -995,9 +1003,12 @@ prefix_placeholder: 前缀
 suffix_placeholder: 后缀
 decimals_placeholder: 小数位数...
 no_dashboards: 没有仪表盘
-no_dashboards_copy: 您还没有任何工作台。
-create_dashboard: 创建Dashboard
-dashboard_name: Dashboard名称
+# no_dashboards_copy: 您还没有任何工作台。
+no_dashboards_copy: 您还没有任何仪表盘。 # DONE
+# create_dashboard: 创建Dashboard
+create_dashboard: 创建仪表盘 # DONE
+# dashboard_name: Dashboard名称
+dashboard_name: 仪表盘名称 # DONE
 no_data: 没有数据
 no_data_in_flow: 此Flow没有产生或获取任何数据
 accountability: 访问控制
@@ -1048,6 +1059,7 @@ tooltip_placeholder: 输入工具提示...
 unlimited: 无限制
 open_link_in: 打开链接于
 new_tab: 新标签页
+current_tab: 当前标签页
 save_image: 保存图像
 save_media: 保存媒体
 wysiwyg_options:
@@ -1191,7 +1203,8 @@ page_help_settings_translations_item: '**自定义翻译详细信息** - 用于�
 page_help_users_collection: '**用户目录** - 列出此项目中的所有系统用户。'
 page_help_users_item: >-
   **用户详细信息** - 管理您的帐户信息，或查看其他用户的详细信息。
-page_help_insights_overview: '**Insights** — 您可以访问的工作台列表。'
+# page_help_insights_overview: '**Insights** — 您可以访问的工作台列表。'
+page_help_insights_overview: '**Insights** — 您可以访问的仪表盘列表。' # DONE 更改翻译词条
 page_help_insights_dashboard: '**仪表盘** — 管理工作区面板'
 page_help_marketplace_account: '**Account** - 发布者或已发布扩展的维护者。'
 page_help_marketplace_registry: '**Registry** — Directus 市场中提供的扩展。'
@@ -1326,7 +1339,7 @@ fields:
     status_unverified: 未验证
     status_active: 激活
     status_suspended: 已停用
-    status_archived: 已存档
+    status_archived: 已归档
     role: 角色
     token: Token
     provider: 提供方
@@ -1346,11 +1359,11 @@ fields:
     tiff: Tiff
     avif: AVIF
     reporting: 反馈中
-    mapping: 映射
+    mapping: 地图绘制
     basemaps: 底图
     basemaps_raster: 栅格化
     basemaps_tile: Raster TileJSON
-    basemaps_style: Mapbox 样式
+    basemaps_style: 底图样式
     mapbox_key: Mapbox 访问令牌
     mapbox_placeholder: pk.eyJ1Ijo.....
     attribution: 属性
@@ -1366,6 +1379,7 @@ fields:
     branding: 招牌
     public_foreground: 公共前景
     public_background: 公共背景
+    public_favicon: 公共网站图标
     public_note: 公共便笺
     theming: 默认主题
     default_appearance: 默认外观
@@ -1383,6 +1397,9 @@ fields:
     transformations_all: 允许所有转换
     transformations_none: 禁用转换
     transformations_presets: 将转换限制为以下预设
+    report_feature_url: 反馈功能网址
+    report_bug_url: 反馈Bug网址
+    report_error_url: 反馈报错网址
     image_editor: 图像编辑器
     custom_aspect_ratios: 自定义长宽比
     theme_light_overrides: 亮色主题自定义
@@ -1413,18 +1430,24 @@ fields:
     display_template: 模板
   directus_roles:
     name: 角色名称
-    icon: 角色 Icon
+    # icon: 角色 Icon
+    icon: 角色图标 # DONE 更改翻译
     description: 描述
     users: 角色中的用户
     parent: 父角色
     children: 子角色
+    policies: 访问策略
   directus_policies:
     name: 策略名称
     description: 描述
+    icon: 图标
+    permissions: 权限
     app_access: 应用访问
     admin_access: 管理员访问
     ip_access: IP 访问
     enforce_tfa: 需要 2FA
+    users: 用户
+    roles: 角色
   directus_webhooks:
     name: 名称
     method: 方法
@@ -1461,7 +1484,7 @@ field_options:
     transforms_note: Sharp 方法名称及其参数。 有关更多信息，请参阅 https://sharp.pixelplumbing.com/api-constructor。
     mapbox_key: Mapbox 访问令牌
     mapbox_placeholder: pk.eyJ1Ijo.....
-    basemaps: 底图
+    basemaps: 底图（在地图绘制中提供背景和上下文信息的地图层）
     basemaps_name_placeholder: 输入基图名称：
     basemaps_raster: 栅格化
     basemaps_tile: Raster TileJSON
@@ -1487,7 +1510,7 @@ field_options:
     collection_name: 模型名称
     singular_unit: 单一单位
     plural_unit: 复数单位
-    archive_divider: 存档
+    archive_divider: 归档
     archive_field_placeholder: 选择字段...
     archive_app_filter: 启用归档功能
     archive_value: 归档时设定的值...
@@ -1513,6 +1536,7 @@ field_options:
     ip_access: 添加允许的 IP 地址、 IP 范围和 CIDR 块。留空以允许所有...
     enforce_tfa: 强制两步验证
     assigned_to: 分配给
+    users: 策略分配给的用户
   directus_roles:
     name: 角色名称...
     description: 角色介绍...
@@ -1536,7 +1560,7 @@ field_options:
     status_dropdown_invited: 已邀请
     status_dropdown_active: 激活
     status_dropdown_suspended: 已停用
-    status_dropdown_archived: 已存档
+    status_dropdown_archived: 已归档
     token: 请输入安全访问令牌...
   directus_webhooks:
     status_options_active: 激活
@@ -1561,8 +1585,8 @@ save_current_datetime: 保存当前日期/时间
 always_open: 总是展开
 start_open: 默认打开
 start_collapsed: 默认收起
-block: 阻止
-inline: 内联
+block: 块|行间（block）
+inline: 内联|行内（inline）
 comment: 注释
 live_preview:
   enable: 启用预览
@@ -1600,7 +1624,7 @@ relational_triggers: 关联触发器
 referential_action_field_label_m2o: 删除 {collection} 时...
 referential_action_field_label_o2m: 取消选择 {collection}...
 referential_action_no_action: 防止删除
-referential_action_cascade: 删除 {collection} 项 (分类)
+referential_action_cascade: 删除 {collection} 项 (级联)
 referential_action_set_null: 伪装 {field} 字段
 referential_action_set_default: 设置 {field} 为默认值
 choose_action: 选择操作
@@ -1678,8 +1702,8 @@ registration_successful_headline: 成功！
 registration_successful_note: 您现在可以进入登录页面。
 registration_successful_check_email_note: |
   请注意，您需要通过点击发送给您的验证链接来验证您的电子邮件地址。
-dont_have_an_account: 还没有帐户吗？
-already_have_an_account: 已经有一个帐户了？
+dont_have_an_account: 还没有账户吗？
+already_have_an_account: 已经有一个账户了？
 sign_up_now: 立即注册
 sign_in: 登录
 sign_out: 退出登录
@@ -1816,8 +1840,8 @@ interfaces:
     choices_placeholder: 添加选项
     allow_other: 允许其他
     allow_other_label: 允许其他值
-    allow_none: 不允许
-    allow_none_label: 不允许选择
+    allow_none: 允许 None 值
+    allow_none_label: 允许不做选择
     choices_name_placeholder: 输入名称...
     choices_value_placeholder: 请输入值...
     preview_threshold: 预览阈值
@@ -1880,8 +1904,8 @@ interfaces:
     editorFont: 编辑器字体
     previewFont: 预览字体
     default_view: 默认视图
-    default_view_editor: 编辑器
-    default_view_preview: 预览
+    default_view_editor: 编辑视图
+    default_view_preview: 预览视图
     customSyntax: 自定义块
     customSyntax_label: 添加自定义语法类型
     customSyntax_add: 添加自定义语法
@@ -1925,6 +1949,7 @@ interfaces:
     description: 选择多项选择
   list:
     repeater: 重复器
+    # 重复器其实就是一个列表。但是目前（2024-11-05）来看，它还不支持字段翻译功能。
     description: 创建同一结构的多个条目
     edit_fields: 编辑字段
     add_label: '"创建新"标签'
@@ -2079,14 +2104,14 @@ displays:
   boolean:
     boolean: Boolean
     description: 显示开启或关闭状态
-    label_on: 标签开启
+    label_on: 开启时标签
     label_on_placeholder: 在标签上输入...
-    label_off: 关闭标签
+    label_off: 关闭时标签
     label_off_placeholder: 输入关闭标签...
-    icon_on: 图标开启
-    icon_off: 关闭图标
-    color_on: 启用颜色
-    color_off: 禁用颜色
+    icon_on: 开启时图标
+    icon_off: 关闭时图标
+    color_on: 启用时颜色
+    color_off: 禁用时颜色
   collection:
     collection: 数据模型
     description: 显示模型
@@ -2416,7 +2441,7 @@ operations:
     token: Token
     token_placeholder: eyJhbGciOi
     options: 选项
-    options_placeholder: '请参考阅读https://www.npmjs.com/package/jsonwebtoken#usage for the available options'
+    options_placeholder: '请参考阅读 https://www.npmjs.com/package/jsonwebtoken#usage 以查看可用选项。'
     sign: 签名令牌
     verify: 验证令牌
     decode: 解码令牌

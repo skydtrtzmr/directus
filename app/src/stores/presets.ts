@@ -50,7 +50,7 @@ const systemDefaults: Record<string, Partial<Preset>> = {
 		layout_options: {
 			cards: {
 				icon: 'account_circle',
-				title: '{{ first_name }} {{ last_name }}',
+				title: '{{ last_name }}{{ first_name }}',
 				subtitle: '{{ email }}',
 				size: 4,
 			},

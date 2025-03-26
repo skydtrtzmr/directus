@@ -15,7 +15,6 @@ coverage/
 
 # Dotenv configs
 .env
-.env.*
 
 # Logs
 npm-debug.log
@@ -39,6 +38,9 @@ debug
 # Temporary files
 TODO
 
+# Docker Volumes
+/docker_volumes/
+
 # Directus
 *.db
 /schema.yaml
@@ -50,3 +52,4 @@ TODO
 /tests/blackbox/sequencer-data.json
 /packages/extensions-sdk/temp-extension-*/
 /docs/packages/
+/docker_volumes

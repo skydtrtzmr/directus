@@ -52,3 +52,9 @@ TODO
 /tests/blackbox/sequencer-data.json
 /packages/extensions-sdk/temp-extension-*/
 /docs/packages/
+<<<<<<< Updated upstream
+=======
+
+# Project backup
+/backup
+>>>>>>> Stashed changes

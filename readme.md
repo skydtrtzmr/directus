@@ -70,6 +70,7 @@ docker build -t skydtrtzmr/my-directus:v1.0.0 ./
 ```json
 {"cards":{"icon":"account_circle","title":"{{ last_name }}{{ first_name }}","subtitle":"{{ email }}","size":5}}
 ```
+
 记得在数据库中修改完后，要保存数据库修改！
 
 #### 关于系统collections的字段
@@ -98,8 +99,8 @@ flow中，用脚本来把对象添加到列表的属性中，从而解决数据�
 关于题型，参考这篇文章：
 https://testfellow.com/what-are-mcqs/#google_vignette
 
-
 ## directus Admin静态密钥：
+
 Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
 
 #### 注意
@@ -108,7 +109,7 @@ Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
 
 搜索功能的实现在`app\src\modules\content\components\navigation.vue`中，可以看到：
 
-```
+```vue
 <div v-if="showSearch" class="search-input">
     <v-input v-model="search" type="search" :placeholder="t('search_collection')" />
 </div>

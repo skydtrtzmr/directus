@@ -4,9 +4,10 @@
 # 如果是linux系统里面用docker，注意安装的是docker compose v2，而不是v1。
 
 # 命令：
-
-# docker compose up -d
+# docker compose -p directus up -d
 # 注意不是docker-compose up -d，而是docker compose up -d。少了个横杠，有横杠的是v1。
+
+# 把该文件和项目根目录下的.env一起拷贝到docker的directus项目文件夹。
 
 services:
 

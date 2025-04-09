@@ -32,8 +32,10 @@ ENV NODE_OPTIONS=--max-old-space-size=32768
 
 COPY pnpm-lock.yaml .
 
-#这里是我自己新增的，不确定。如果在中国环境下构建请把下面注释打开
+#这里是我自己新增的，不确定，但是确实能解决卡在pnpm fetch的问题。
+# 如果在中国环境下构建请把下面注释打开
 RUN npm config set registry https://registry.npmmirror.com
+RUN pnpm config set registry https://registry.npmmirror.com
 
 RUN pnpm fetch
 

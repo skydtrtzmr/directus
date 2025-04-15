@@ -49,7 +49,7 @@ services:
       start_period: 30s
 
   directus:
-    image: skydtrtzmr/my-directus:11.5.1
+    image: skydtrtzmr/my-directus:latest
     ports:
       - 8056:8055
     # 注意volume的路径，默认是在根目录的uploads和extensions下，而开发时是在api目录下。记得复制出来，不要污染源代码。

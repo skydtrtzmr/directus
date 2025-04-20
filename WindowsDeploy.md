@@ -46,7 +46,7 @@ pnpm --filter directus deploy --prod dist
 
 ### 2.1 install
 
-在生产环境安装Node.js 18
+在生产环境安装Node.js
 
 设置镜像
 

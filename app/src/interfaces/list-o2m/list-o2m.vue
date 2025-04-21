@@ -200,7 +200,9 @@ watch(
 				return {
 					text: field.name,
 					value: key,
-					width: contentWidth[key] < 10 ? contentWidth[key] * 16 + 10 : 160,
+					// width: contentWidth[key] < 10 ? contentWidth[key] * 16 + 10 : 160,
+					// 【修改】
+					width: contentWidth[key] < 5 ? contentWidth[key] * 32 + 10 : 260,
 					sortable: !['json'].includes(field.type),
 				};
 			})

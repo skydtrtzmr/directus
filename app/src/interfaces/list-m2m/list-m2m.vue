@@ -226,12 +226,19 @@ watch(
 				// when user has no permission to this field or junction collection
 				if (!field) return null;
 
+
+				// 【注释】源代码在这里设计了：
+				// 如果字符数小于10，就使用 字符数 * 16 + 10 的像素宽度，否则就使用固定的 160px
+				// 这样的问题在于没考虑中英文，导致宽度计算不准确。
 				return {
 					text: field.name,
 					value: key,
-					width: contentWidth[key] < 10 ? contentWidth[key] * 16 + 10 : 160,
+					// width: contentWidth[key] < 10 ? contentWidth[key] * 16 + 10 : 160,
+					// 【修改】
+					width: contentWidth[key] < 5 ? contentWidth[key] * 32 + 10 : 160,
 					sortable: !['json'].includes(field.type),
 				};
+
 			})
 			.filter((key) => key !== null);
 	},

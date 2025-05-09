@@ -200,10 +200,10 @@ watch(
 				return {
 					text: field.name,
 					value: key,
-					// width: contentWidth[key] < 10 ? contentWidth[key] * 16 + 10 : 160,
+					width: contentWidth[key] < 10 ? contentWidth[key] * 16 + 10 : 160,
 					// 【修改】
 					// TODO：问题在于，现在表格创建后就完全根据内容调整列宽，而忽视了标题的宽度。这也不合适。
-					width: contentWidth[key] < 5 ? contentWidth[key] * 32 + 10 : 260,
+					// width: contentWidth[key] < 5 ? contentWidth[key] * 32 + 10 : 260,
 					sortable: !['json'].includes(field.type),
 				};
 			})

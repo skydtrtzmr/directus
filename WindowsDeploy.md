@@ -6,6 +6,21 @@
 
 ### 1.1 install
 
+注意：
+> Running Directus without Docker may result in errors as a result of environment-specific characteristics. In such a
+case, make sure you have the required system dependencies for `isolated-vm`, `sharp`, and `argon2` installed.
+
+先安装pnpm：
+```
+npm install -g pnpm
+```
+
+要先安装isolate-vm、sharp、argon2:
+```
+pnpm add --global --prod --save-exact isolated-vm sharp argon2
+```
+
+
 ```bash
 pnpm install --recursive --offline --frozen-lockfile
 ```

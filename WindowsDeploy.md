@@ -15,9 +15,14 @@ case, make sure you have the required system dependencies for `isolated-vm`, `sh
 npm install -g pnpm
 ```
 
+配置pnpm：
+```
+pnpm setup
+```
+
 要先安装isolate-vm、sharp、argon2:
 ```
-pnpm add --global --prod --save-exact isolated-vm sharp argon2
+npm install isolated-vm
 ```
 
 

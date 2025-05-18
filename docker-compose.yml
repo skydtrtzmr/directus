@@ -1,6 +1,8 @@
 # version: "3"
 # docker-compose.yml: `version` is obsolete"
 
+# ☆注意，请把这个文件放在专门的docker项目文件夹去执行，不要在开发项目根目录执行。
+
 # 如果是linux系统里面用docker，注意安装的是docker compose v2，而不是v1。
 
 # 命令：

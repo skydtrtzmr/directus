@@ -1,13 +1,21 @@
 table: directus_users
 
 fields:
-  - field: first_name
+  # - field: first_name
+  #   interface: input
+  #   options:
+  #     iconRight: account_circle
+  #   width: half
+
+  - field: last_name
     interface: input
     options:
       iconRight: account_circle
     width: half
 
-  - field: last_name
+  # DONE 调整字段顺序
+
+  - field: first_name
     interface: input
     options:
       iconRight: account_circle

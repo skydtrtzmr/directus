@@ -1,3 +1,4 @@
+<!-- 在这里修改单元格的样式 -->
 <script setup lang="ts">
 import type { ShowSelect } from '@directus/extensions';
 import { computed } from 'vue';
@@ -90,8 +91,13 @@ const cssHeight = computed(() => {
 		background-color: var(--v-table-background-color, transparent);
 		border-bottom: var(--theme--border-width) solid var(--theme--border-color-subdued);
 
+		// DONE 给单元格添加竖线边框 。 暂时不加了，加了好丑。
+		// border-right: var(--theme--border-width) solid var(--theme--border-color-subdued);
+
 		&:last-child {
 			padding: 0 12px;
+			// DONE 最后一个单元格不添加右边框
+			border-right: none;
 		}
 
 		&.select {

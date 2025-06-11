@@ -231,10 +231,16 @@ const reorderGroupsDisabled = computed(() => !props.canReorderGroups || props.se
 												<span v-if="element.users.length > 3" class="avatar-overflow">
 													+{{ element.users.length - 3 }}
 												</span>
-												<v-avatar
+												<!-- <v-avatar
 													v-for="user in element.users.slice(0, 3)"
 													:key="user.id"
 													v-tooltip.bottom="`${user.first_name} ${user.last_name}`"
+													class="avatar"
+												> -->
+												<v-avatar
+													v-for="user in element.users.slice(0, 3)"
+													:key="user.id"
+													v-tooltip.bottom="`${user.last_name}${user.first_name}`"
 													class="avatar"
 												>
 													<v-image v-if="user.avatar && parseAvatar(user.avatar)" :src="parseAvatar(user.avatar)" />

@@ -1,3 +1,4 @@
+// 儒儒注：这个文件是默认的主题文件（深色模式），可以根据需要修改，但不要删除
 import { defineTheme } from '../../utils/define-theme.js';
 
 export default defineTheme({
@@ -273,7 +274,7 @@ export default defineTheme({
 			menu: {
 				background: '#161b22',
 				borderRadius: 'var(--theme--border-radius)',
-				boxShadow: '0px 0px 6px 0px rgb(0, 0, 0, 0.2)',
+				boxShadow: '0px 0px 6px 0px black',
 			},
 		},
 

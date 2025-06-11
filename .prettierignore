@@ -9,4 +9,3 @@ pnpm-lock.yaml
 !/app/src/lang/translations/en-US.yaml
 /docs/packages/
 /api/uploads/
-/api/extensions/

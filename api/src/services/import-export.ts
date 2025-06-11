@@ -376,6 +376,7 @@ export class ExportService {
 								includeHeader: batch === 0,
 								includeFooter: batch + 1 === batchesRequired,
 								fields: csvHeadings,
+								withBOM: true,  // 【修改】
 							}),
 						);
 					}
@@ -462,6 +463,7 @@ Your export of ${collection} is ready. <a href="${href}">Click here to view.</a>
 			includeHeader?: boolean;
 			includeFooter?: boolean;
 			fields?: string[] | null;
+			withBOM?: boolean; // 【修改】
 		},
 	): string {
 		if (format === 'json') {
@@ -498,9 +500,13 @@ Your export of ${collection} is ready. <a href="${href}">Click here to view.</a>
 			const transforms = [CSVTransforms.flatten({ separator: '.' })];
 			const header = options?.includeHeader !== false;
 
+			// const transformOptions = options?.fields
+			// ? { transforms, header, fields: options?.fields }
+			// : { transforms, header };
+			// 【修改】
 			const transformOptions = options?.fields
-				? { transforms, header, fields: options?.fields }
-				: { transforms, header };
+				? { transforms, header, fields: options?.fields, withBOM: true }
+				: { transforms, header, withBOM: true };
 
 			let string = new CSVParser(transformOptions).parse(input);
 

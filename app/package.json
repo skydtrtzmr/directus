@@ -1,6 +1,6 @@
 {
 	"name": "@directus/app",
-	"version": "13.8.1",
+	"version": "13.9.2",
 	"description": "App dashboard for Directus",
 	"homepage": "https://directus.io",
 	"repository": {
@@ -101,7 +101,7 @@
 		"@vueuse/core": "12.7.0",
 		"@vueuse/router": "12.7.0",
 		"apexcharts": "4.5.0",
-		"axios": "1.8.1",
+		"axios": "1.8.4",
 		"base-64": "1.0.0",
 		"caret-pos": "2.0.0",
 		"chroma-js": "3.1.2",
@@ -126,6 +126,7 @@
 		"mapbox-gl": "1.13.3",
 		"maplibre-gl": "1.15.3",
 		"marked": "15.0.7",
+		"marked-katex-extension": "5.1.4",
 		"micromustache": "8.0.3",
 		"mime": "4.0.6",
 		"mitt": "3.0.1",

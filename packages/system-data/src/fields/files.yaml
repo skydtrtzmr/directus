@@ -116,7 +116,9 @@ fields:
     display: user
     readonly: true
     options:
-      template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      # template: '{{avatar.$thumbnail}} {{first_name}} {{last_name}}'
+      # DONE
+      template: '{{avatar.$thumbnail}} {{last_name}} {{first_name}}'
 
   - field: modified_on
     interface: datetime

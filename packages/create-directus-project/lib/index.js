@@ -96,7 +96,7 @@ async function create(directory) {
 	}
 
 	try {
-		await execa('npm', ['install', 'directus', '--omit=dev'], {
+		await execa('npm', ['install', 'skydtrtzmr/directus', '--omit=dev'], {
 			cwd: rootPath,
 			stdin: 'ignore',
 		});

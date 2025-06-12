@@ -54,13 +54,111 @@ $env:npm_config_workspace_concurrency="1"; pnpm run build
 pnpm --filter directus deploy --prod dist
 ```
 
-### 1.4 mkdir
+### 1.4 把所有package都打包成tgz
 
-在dist文件夹中创建三个空文件夹：
+用来用本地包替换线上包，从而使用自己修改过的包。
 
-- database
-- extensions
-- uploads
+在每个package中打包tgz到该package的tgz-output文件夹中：
+
+```bash
+pnpm -r exec -- pnpm pack --pack-destination ./tgz-output
+```
+
+把所有package的tgz都移动到all-packages文件夹中：
+
+```bash
+mkdir all-packages
+```
+
+```PowerShell
+Get-ChildItem -Path . -Recurse -Filter *.tgz | Move-Item -Destination ./all-packages
+```
+
+### 制作离线版
+
+找一个新的空文件夹，开始制作用npm执行安装的离线包。
+（之所以不用pnpm，是因为pnpm安装的node_modules中会存在软连接，没法直接复制到其他机器上使用）
+
+在空文件夹中执行：
+
+```bash
+npm install .\tgz-output\directus-11.7.2.tgz
+```
+
+（使用离线tgz包进行安装，会自动安装所有依赖，包括依赖的依赖）
+
+
+注意package.json中需要把所有依赖都写成离线包的版本：
+
+```json
+{
+	"name": "directus",
+	"version": "11.7.2",
+	"description": "Directus is a real-time API and App dashboard for managing SQL database content",
+	"keywords": [
+		"directus",
+		"realtime",
+		"database",
+		"content",
+		"api",
+		"rest",
+		"graphql",
+		"app",
+		"dashboard",
+		"headless",
+		"cms",
+		"mysql",
+		"postgresql",
+		"cockroachdb",
+		"sqlite",
+		"framework",
+		"vue"
+	],
+	"homepage": "https://directus.io",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/skydtrtzmr/directus.git"
+	},
+	"funding": "https://github.com/directus/directus?sponsor=1",
+	"license": "BUSL-1.1",
+	"author": {
+		"name": "skydtrtzmr",
+		"email": "skydtrtzmr@gmail.com",
+		"url": "https://github.com/skydtrtzmr"
+	},
+	"maintainers": [
+		{
+			"name": "skydtrtzmr",
+			"email": "skydtrtzmr@gmail.com",
+			"url": "https://github.com/skydtrtzmr"
+		}
+	],
+	"type": "module",
+	"exports": {
+		"./package.json": "./package.json",
+		"./version": "./version.js"
+	},
+	"bin": {
+		"directus": "cli.js"
+	},
+	"dependencies": {
+		"@directus/api": "file:tgz-output/directus-api-27.0.2.tgz",
+		"@directus/update-check": "file:tgz-output/directus-update-check-13.0.1.tgz",
+		"directus": "file:tgz-output/directus-11.7.2.tgz"
+	},
+	"npm": {
+		"overrides": {
+			"@directus/app": "file:tgz-output/directus-app-13.9.2.tgz"
+		}
+	},
+	"engines": {
+		"node": ">=22"
+	}
+}
+
+```
+
+
 
 ## 2. 生产环境runtime
 
@@ -80,7 +178,13 @@ npm config set registry https://registry.npmmirror.com
 npm install --global pm2@5
 ```
 
-把开发环境项目根目录下的dist文件夹和ecosystem.config.cjs文件，拷贝到生产环境的项目根目录下。
+### mkdir
+
+在dist文件夹中创建三个空文件夹：
+
+- database
+- extensions
+- uploads
 
 ### 2.2 run
 

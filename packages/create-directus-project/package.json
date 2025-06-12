@@ -1,5 +1,5 @@
 {
-	"name": "@skydtrtzmr/create-directus-project",
+	"name": "create-directus-project",
 	"version": "12.0.1",
 	"description": "A small installer util that will create a directory, add boilerplate folders, and install Directus through npm",
 	"keywords": [

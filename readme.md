@@ -114,3 +114,12 @@ Hi-SYXX9aIn4VasXEu5YrjGyVz_0kNVa
     <v-input v-model="search" type="search" :placeholder="t('search_collection')" />
 </div>
 ```
+
+### 关于部署
+
+我看了他的源码（packages\create-directus-project\lib\index.jspackages\create-directus-project\lib\index.js），他的实际部署npm包，都是用的npm install。
+
+npm模式启动命令：
+```
+npx directus start
+```

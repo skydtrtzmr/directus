@@ -313,7 +313,6 @@ field_in_collection: '{field} ({collection})'
 reset_page_preferences: إعادة ضبط الإعدادات المفضّلة للتطبيقات
 hidden_field: حقل مخفي
 hidden_on_detail: مخفي في التفاصيل
-disabled_editing_value: تعطيل قيمة التحرير
 key: مفتاح
 alias: اسم مستعار
 bigInteger: عدد صحيح كبير
@@ -1271,6 +1270,7 @@ fields:
     status: حالة
     status_draft: مسوّدة
     status_invited: مَدعُوّ
+    status_unverified: غير مؤكد
     status_active: مفعل
     status_suspended: معلّق
     status_archived: مؤرشف

@@ -503,6 +503,7 @@ function getLinkForItem(item: DisplayItem) {
 							class="item-link"
 							:class="{ disabled: item.$type === 'created' }"
 							@click.stop
+							@keydown.stop
 						>
 							<v-icon name="launch" />
 						</router-link>
@@ -515,6 +516,7 @@ function getLinkForItem(item: DisplayItem) {
 							:item-is-local="isLocalItem(item)"
 							:item-edits="getItemEdits(item)"
 							@action="deleteItem(item)"
+							@keydown.stop
 						/>
 					</div>
 				</template>
@@ -695,6 +697,9 @@ function getLinkForItem(item: DisplayItem) {
 
 .actions {
 	@include mixins.list-interface-actions($pagination: true);
+
+	position: relative;
+	z-index: 1;
 
 	&.top {
 		margin-top: 0px;

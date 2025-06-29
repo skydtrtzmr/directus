@@ -11,6 +11,9 @@ FROM node:${NODE_VERSION}-alpine AS builder
 # (see https://github.com/directus/directus/issues/24514)
 RUN npm install --global corepack@latest
 
+# 使用阿里云的镜像源
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+
 RUN apk --no-cache add python3 py3-setuptools build-base
 
 WORKDIR /directus

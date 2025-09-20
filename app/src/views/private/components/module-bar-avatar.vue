@@ -18,11 +18,17 @@ const { unread } = storeToRefs(notificationsStore);
 
 const userStore = useUserStore();
 
+(async () => await userStore.hydrateAdditionalFields(['avatar.modified_on']))();
+
 const signOutActive = ref(false);
 
 const avatarURL = computed<string | null>(() => {
 	if (!userStore.currentUser || !('avatar' in userStore.currentUser) || !userStore.currentUser?.avatar) return null;
-	return getAssetUrl(`${userStore.currentUser.avatar.id}?key=system-medium-cover`);
+
+	return getAssetUrl(userStore.currentUser.avatar.id, {
+		imageKey: 'system-medium-cover',
+		cacheBuster: userStore.currentUser.avatar.modified_on,
+	});
 });
 
 const avatarError = ref<null | Event>(null);
@@ -112,10 +118,9 @@ const userFullName = userStore.fullName ?? undefined;
 		&.no-avatar {
 			&::after {
 				position: absolute;
-				top: -1px;
-				right: 8px;
-				left: 8px;
-				height: var(--theme--border-width);
+				inset-block-start: -1px;
+				inset-inline: 8px;
+				block-size: var(--theme--border-width);
 				background-color: var(--theme--navigation--modules--button--foreground);
 				opacity: 0.25;
 				content: '';
@@ -170,8 +175,8 @@ const userFullName = userStore.fullName ?? undefined;
 		--v-button-background-color-hover: var(--theme--navigation--modules--background);
 
 		position: absolute;
-		top: 0;
-		left: 0;
+		inset-block-start: 0;
+		inset-inline-start: 0;
 		z-index: 2;
 		transition: transform var(--fast) var(--transition);
 		opacity: 0;

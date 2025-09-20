@@ -283,8 +283,12 @@ function getLinkForItem() {
 }
 
 .v-skeleton-loader {
-	top: 0;
-	left: 0;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+}
+
+.placeholder {
+	color: var(--v-input-placeholder-color, var(--theme--foreground-subdued));
 }
 
 .placeholder {
@@ -292,9 +296,8 @@ function getLinkForItem() {
 }
 
 .preview {
-	display: block;
 	flex-grow: 1;
-	height: calc(100% - 16px);
+	block-size: 100%;
 	overflow: hidden;
 }
 
